@@ -1,0 +1,10 @@
+form {
+    background-color: #fff;
+    width: 15%;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+:required {
+    border: 2px dotted orange;
+}

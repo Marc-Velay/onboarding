@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CIMD Onboarding</title>
+    {% load static %}
+    <script src="{% static 'onboarding/onboarding.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'onboarding/onboarding.css' %}">
+</head>
+
+<body>
+    <button id="take">Take a photo</button><br />
+    <video id="v"></video>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <img src="" id="photo" alt='Please click "Take a photo"'>
+    <br>
+    <button onclick="location.href = 'http://127.0.0.1:8000/';">Return to home page</button>
+
+</body>
