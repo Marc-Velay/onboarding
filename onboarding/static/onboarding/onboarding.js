@@ -1,5 +1,8 @@
 window.onload = function() {
     (function() {
+        jQuery.noConflict();
+        formdata = new FormData();
+
         function userMedia() {
             return navigator.getUserMedia = navigator.getUserMedia ||
                 navigator.webkitGetUserMedia ||
@@ -8,7 +11,6 @@ window.onload = function() {
 
         }
 
-        // Now we can use it
         if (userMedia()) {
             var videoPlaying = false;
             var constraints = {
@@ -19,10 +21,8 @@ window.onload = function() {
             var media = navigator.getUserMedia(constraints, function(stream) {
                 var v = document.getElementById('v');
 
-                // URL Object is different in WebKit
                 var url = window.URL || window.webkitURL;
 
-                // create the url and set the source of the video element
                 v.src = url ? url.createObjectURL(stream) : stream;
 
                 // Start the video
@@ -42,6 +42,24 @@ window.onload = function() {
                     canvas.getContext('2d').drawImage(v, 0, 0);
                     var data = canvas.toDataURL('image/webp');
                     document.getElementById('photo').setAttribute('src', data);
+                    if (formdata) {
+                        formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
+                        formdata.append("image", data);   
+                    }
+                }
+            }, false);
+
+            document.getElementById('subButton').addEventListener('click', function() {
+
+                if (formdata && document.getElementById('photo').getAttribute('src') != "") {
+                    jQuery.ajax({
+                        url: "liste/",
+                        type: "POST",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function() { alert("success"); }
+                    });        
                 }
             }, false);
         } else {

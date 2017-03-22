@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+</script>
+
+<!-- Upload form. Note enctype attribute! -->
+<form method='post' enctype='multipart/form-data'>
+    {% csrf_token %}
+    <img src='' id='photo'>
+    <input type="file" id="image" name="image" style="display: none">
+    <p><input type="submit" value="Upload" id="subButton" /></p>
+</form>
+
+
+<!-- List of uploaded documents -->
+{% if documents %}
+<ul>
+    {% for document in documents %}
+    <li>
+        <img src="{{ document.model_pic.url }}" alt="{{ document.model_pic.name }}">
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No previously uploaded pictures.</p>
+{% endif %}

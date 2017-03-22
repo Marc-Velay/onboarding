@@ -53,7 +53,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mainSite.urls'
-DEFAULT_FILE_STORAGE = '../static/'
 
 TEMPLATES = [
     {
@@ -130,3 +129,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "/static/"),
     '/static/',
     ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_URL = '/media/'

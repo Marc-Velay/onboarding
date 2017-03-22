@@ -1,19 +1,26 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>CIMD Onboarding</title>
     {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'onboarding/onboarding.js' %}"></script>
     <link rel="stylesheet" href="{% static 'onboarding/onboarding.css' %}">
 </head>
 
 <body>
-    <button id="take">Take a photo</button><br />
     <video id="v"></video>
     <canvas id="canvas" style="display:none;"></canvas>
-    <img src="" id="photo" alt='Please click "Take a photo"'>
+    <button id="take">Take a photo</button><br />
+    <!--<img src='' id='photo'>-->
+    <!--alt='Please click "Take a photo"'-->
+    <div id="Template">{% include "onboarding/liste.html" %}</div>
+
     <br>
     <button onclick="location.href = 'http://127.0.0.1:8000/';">Return to home page</button>
 
 </body>
+
+</html>
