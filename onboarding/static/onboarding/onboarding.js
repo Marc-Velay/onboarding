@@ -40,7 +40,8 @@ window.onload = function() {
                     canvas.width = v.videoWidth;
                     canvas.height = v.videoHeight;
                     canvas.getContext('2d').drawImage(v, 0, 0);
-                    var data = canvas.toDataURL('image/webp');
+                    var data = canvas.toDataURL('image/png');
+                    //var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
                     document.getElementById('photo').setAttribute('src', data);
                     if (formdata) {
                         formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
