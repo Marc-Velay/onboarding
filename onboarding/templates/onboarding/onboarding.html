@@ -11,11 +11,20 @@
 </head>
 
 <body>
+    <script type="text/javascript">
+        window.CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
     <video id="v"></video>
     <canvas id="canvas" style="display:none;"></canvas>
-    <button id="take">Take a photo</button><br />
-    <!--<img src='' id='photo'>-->
-    <!--alt='Please click "Take a photo"'-->
+    <img src='' id='photo'><br>
+    <button id="take">Take a photo</button>
+
+    <!-- Upload form. Note enctype attribute! -->
+    <form method='post' enctype='multipart/form-data' id="form">
+        {% csrf_token %}
+        <input type="file" id="image" name="image" style="display: none">
+        <p><input type="submit" value="Upload" id="subButton" /></p>
+    </form>
     <div id="Template">{% include "onboarding/liste.html" %}</div>
 
     <br>

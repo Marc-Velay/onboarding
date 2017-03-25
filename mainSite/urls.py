@@ -23,7 +23,11 @@ urlpatterns = [
     url(r'^onboarding/', include('onboarding.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('home.urls')),
+    
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+"""url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT,
+    }),"""
