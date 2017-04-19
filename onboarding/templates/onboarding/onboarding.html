@@ -28,7 +28,7 @@
     <div id="Template">{% include "onboarding/liste.html" %}</div>
 
     <br>
-    <button onclick="location.href = 'http://127.0.0.1:8000/';">Return to home page</button>
+    <a href="{% url 'home:index' %}"><button >Return to home page</button></a>
 
 </body>
 

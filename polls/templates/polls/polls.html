@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{% static 'polls/polls.css' %}">
 </head>
 
-<form name="form" action='http://127.0.0.1:8000/onboarding/' onsubmit="return postForm()" method="post">
+<form name="form" action="{% url 'polls:index' %}" onsubmit="return postForm()" method="post">
     <!--Submit function here-->
     <p>Nom</p>
     <input type="text" name="nom" required="required" pattern=".{2,}">
@@ -31,4 +31,4 @@
     <input type="email" name="mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"> <br><br>
     <input type="submit">
 </form>
-<button onclick="location.href = 'http://127.0.0.1:8000/onboarding';">Next step</button>
+<a href="{% url 'onboarding:index' %}"><button>Next step</button></a>
