@@ -46,15 +46,23 @@ def ocr(name):
             break
         else:
             screenCnt = 0
+            print("unclear picture")
 
-    #cv2.imshow('image', image)
-    cv2.imshow('edge', dilated)
     if screenCnt is not 0:
         print("drawing contours")
         cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
         cv2.imshow("Outline", image)
-    else:
-        print("unclear picture")
+
+    warped = four_point_transform(orig, screenCnt.reshape(4, 2)*ratio)
+    warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+    warped = threshold_adaptive(warped, 251, offset=10)
+    warped = warped.astype("uint8") * 255
+
+    #cv2.imshow('image', image)
+    cv2.imshow('edge', dilated)
+    cv2.imshow("Original", imutils.resize(orig, height=650))
+    cv2.imshow("Scanned", imutils.resize(warped, height=650))
+
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
