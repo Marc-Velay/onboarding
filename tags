@@ -119,7 +119,7 @@ index	polls/views.py	/^def index(request):$/;"	kind:function	line:8
 initial	onboarding/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
 initial	onboarding/migrations/0003_examplemodel.py	/^    initial = True$/;"	kind:variable	line:10
 initial	polls/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
-liste	onboarding/views.py	/^def liste(request):$/;"	kind:function	line:31
+liste	onboarding/views.py	/^def liste(request):$/;"	kind:function	line:32
 manage.py	manage.py	1;"	kind:file	line:1
 model_name	onboarding/migrations/0001_initial.py	/^            model_name='choice',$/;"	kind:variable	line:34
 model_name	onboarding/migrations/0002_auto_20170317_1013.py	/^            model_name='choice',$/;"	kind:variable	line:16

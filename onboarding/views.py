@@ -24,7 +24,7 @@ from .ocr import ocr
 BASE_DIR = dirname(mainSite.__file__)
 def index(request):
     documents = ImageSnapshot.objects.all()
-    ocr("fotodniRotated.jpg")   #rotated the imahe to display image transform
+    #ocr("fotodniRotated.jpg")   #rotated the imahe to display image transform
     #ocr("fotodni.jpg")         #original image
     return render(request, 'onboarding/onboarding.html', {'documents': documents})
 
@@ -41,7 +41,7 @@ def liste(request):
                 data = ContentFile(b64decode(img_txt), name)
                 model = ImageSnapshot(nom=name)
                 model.model_pic.save(name, data)
-                #ocr(name)
+                ocr(name)
                 model.save()
 
                 #return redirect('/onboarding/liste/')
