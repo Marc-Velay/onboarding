@@ -10,5 +10,5 @@
 
 <body>
     <p id="txt">Welcome to grupo CIMD's onboarding site!</p>
-    <button onclick="location.href = 'http://127.0.0.1:8000/polls';">Create a new account</button>
+    <a href="{% url 'polls:index' %}"><button>Create a new account</button></a>
 </body>

@@ -10,11 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-import os
+from os import environ, mkdir
+from os.path import abspath, basename, dirname, isdir, join, normpath
+from sys import path
 import mainSite
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(mainSite.__file__)
-
+#BASE_DIR = dirname(mainSite.__file__)
+# Absolute filesystem path to the Django project directory:
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+# Absolute filesystem path to the top-level project folder:
+SITE_ROOT = dirname(DJANGO_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -127,9 +132,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "/static/"),
+    join(SITE_ROOT, "static/"),
     '/static/',
     ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = join(BASE_DIR, 'media')
+# ======== MEDIA CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = join(DJANGO_ROOT, 'media/')
+if not isdir(MEDIA_ROOT):
+    raise Exception('MEDIA_ROOT is not a valid path!!! Please check mainSite/settings.py')
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
+# ======== END MEDIA CONFIGURATION
