@@ -162,7 +162,7 @@ name	polls/migrations/0001_initial.py	/^            name='Choice',$/;"	kind:vari
 name	polls/migrations/0001_initial.py	/^            name='Question',$/;"	kind:variable	line:26
 name	polls/migrations/0001_initial.py	/^            name='question',$/;"	kind:variable	line:35
 nom	onboarding/models.py	/^    nom = models.CharField(max_length=30, default='')$/;"	kind:variable	line:11
-ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:10
+ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:16
 ocr.py	onboarding/ocr.py	1;"	kind:file	line:1
 operations	onboarding/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
 operations	onboarding/migrations/0002_auto_20170317_1013.py	/^    operations = [$/;"	kind:variable	line:14

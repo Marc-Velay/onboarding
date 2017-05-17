@@ -7,15 +7,36 @@ import numpy as np
 import cv2
 from django.conf import settings
 
+from PIL import Image
+import sys
+
+import pyocr
+import pyocr.builders
+
 def ocr(name):
     print("ocr")
     image = cv2.imread(os.path.join(settings.MEDIA_ROOT, 'onboarding/') + name, -1)
-    cv2.waitKey(0)
+    #cv2.waitKey(0)
     #pts = np.array([(73, 239), (356, 117), (475, 265), (187, 443)], dtype="float32")
     #warped = four_point_transform(image, pts)
     ratio = image.shape[0]/500.0
     orig = image.copy()
     image = imutils.resize(image, height=500)
+
+    tools = pyocr.get_available_tools()
+    if len(tools) == 0:
+        print("No OCR tool found")
+        sys.exit(1)
+    # The tools are returned in the recommended order of usage
+    tool = tools[0]
+    print("Will use tool '%s'" % (tool.get_name()))
+    # Ex: Will use tool 'libtesseract'
+
+    langs = tool.get_available_languages()
+    print("Available languages: %s" % ", ".join(langs))
+    lang = langs[2]
+    print (lang)
+    print("Will use lang '%s'" % (lang))
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #gray = cv2.GaussianBlur(gray, (5, 5), 0)
@@ -51,18 +72,29 @@ def ocr(name):
     if screenCnt is not 0:
         print("drawing contours")
         cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
-        cv2.imshow("Outline", image)
+        #cv2.imshow("Outline", image)
 
     warped = four_point_transform(orig, screenCnt.reshape(4, 2)*ratio)
     warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
-    warped = threshold_adaptive(warped, 251, offset=10)
+    #warped = threshold_adaptive(warped, 251, offset=10)
+    warped = threshold_adaptive(warped, 25, offset=5)
     warped = warped.astype("uint8") * 255
 
     #cv2.imshow('image', image)
-    cv2.imshow('edge', dilated)
+    #cv2.imshow('edge', dilated)
     cv2.imshow("Original", imutils.resize(orig, height=650))
-    cv2.imshow("Scanned", imutils.resize(warped, height=650))
+    #cv2.imshow("Scanned", imutils.resize(warped, height=650))
 
+    pil_im = Image.fromarray(imutils.resize(warped, height=650))
+    pil_im.show()
+
+    txt = tool.image_to_string(
+        pil_im,
+        #imutils.resize(warped, height=650),
+        lang="spa",
+        builder=pyocr.builders.TextBuilder()
+    )
+    print (txt)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
