@@ -15,14 +15,16 @@ import pyocr.builders
 
 def ocr(name):
     print("ocr")
+    ############# get the image to be processed ###################
     image = cv2.imread(os.path.join(settings.MEDIA_ROOT, 'onboarding/') + name, -1)
     #cv2.waitKey(0)
     #pts = np.array([(73, 239), (356, 117), (475, 265), (187, 443)], dtype="float32")
     #warped = four_point_transform(image, pts)
     ratio = image.shape[0]/500.0
     orig = image.copy()
-    image = imutils.resize(image, height=500)
+    image = imutils.resize(image, height=700)
 
+    ################ Init the OCR tools #####################
     tools = pyocr.get_available_tools()
     if len(tools) == 0:
         print("No OCR tool found")
@@ -30,27 +32,26 @@ def ocr(name):
     # The tools are returned in the recommended order of usage
     tool = tools[0]
     print("Will use tool '%s'" % (tool.get_name()))
-    # Ex: Will use tool 'libtesseract'
-
+    # Select spanish language
     langs = tool.get_available_languages()
     print("Available languages: %s" % ", ".join(langs))
     lang = langs[2]
-    print (lang)
     print("Will use lang '%s'" % (lang))
 
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    ############### Filter image to get a flat grayscale version ################
+    #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #gray = cv2.GaussianBlur(gray, (5, 5), 0)
-    edged = cv2.Canny(gray, 75, 200)
-    kernel = np.ones((5,5),np.uint8)
-    dilated = cv2.dilate(edged, kernel, iterations=1)
+    #edged = cv2.Canny(gray, 75, 200)
+    #kernel = np.ones((5,5),np.uint8)
+    #dilated = cv2.dilate(edged, kernel, iterations=1)
     # find the contours in the edged image, keeping only the
     # largest ones, and initialize the screen contour
     print("finding contours")
     #(cnts, _) 
-    _, cnts, _= cv2.findContours(dilated.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    print("sorting arrays")
-    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
-
+    #_, cnts, _= cv2.findContours(dilated.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    #print("sorting arrays")
+    #cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+    '''
     # loop over the contours
     print("analysing contours")
     for c in cnts:
@@ -77,15 +78,17 @@ def ocr(name):
     warped = four_point_transform(orig, screenCnt.reshape(4, 2)*ratio)
     warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
     #warped = threshold_adaptive(warped, 251, offset=10)
-    warped = threshold_adaptive(warped, 25, offset=5)
+    warped = threshold_adaptive(warped, 15, offset=10)
     warped = warped.astype("uint8") * 255
-
+    '''
     #cv2.imshow('image', image)
     #cv2.imshow('edge', dilated)
-    cv2.imshow("Original", imutils.resize(orig, height=650))
+    #cv2.imshow("Original", imutils.resize(orig, height=650))
     #cv2.imshow("Scanned", imutils.resize(warped, height=650))
 
-    pil_im = Image.fromarray(imutils.resize(warped, height=650))
+    #pil_im = Image.fromarray(imutils.resize(image, height=1000))
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    pil_im = Image.fromarray(image)
     pil_im.show()
 
     txt = tool.image_to_string(

@@ -136,6 +136,8 @@ STATICFILES_DIRS = [
     '/static/',
     ]
 
+ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']
+
 #MEDIA_ROOT = join(BASE_DIR, 'media')
 # ======== MEDIA CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root

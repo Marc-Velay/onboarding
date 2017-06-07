@@ -17,6 +17,7 @@
 0010_auto_20170325_1831.py	onboarding/migrations/0010_auto_20170325_1831.py	1;"	kind:file	line:1
 0011_auto_20170327_0126.py	onboarding/migrations/0011_auto_20170327_0126.py	1;"	kind:file	line:1
 0012_auto_20170411_0616.py	onboarding/migrations/0012_auto_20170411_0616.py	1;"	kind:file	line:1
+ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']$/;"	kind:variable	line:139
 ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:33
 AUTH_PASSWORD_VALIDATORS	mainSite/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:100
 BASE_DIR	onboarding/models.py	/^BASE_DIR = os.path.dirname(mainSite.__file__)$/;"	kind:variable	line:7
@@ -30,8 +31,8 @@ INSTALLED_APPS	mainSite/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:
 ImageSnapshot	onboarding/models.py	/^class ImageSnapshot(models.Model):$/;"	kind:class	line:9
 ImageUploadForm	onboarding/forms.py	/^class ImageUploadForm(forms.Form):$/;"	kind:class	line:3
 LANGUAGE_CODE	mainSite/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:119
-MEDIA_ROOT	mainSite/settings.py	/^MEDIA_ROOT = join(DJANGO_ROOT, 'media\/')$/;"	kind:variable	line:142
-MEDIA_URL	mainSite/settings.py	/^MEDIA_URL = '\/media\/'$/;"	kind:variable	line:146
+MEDIA_ROOT	mainSite/settings.py	/^MEDIA_ROOT = join(DJANGO_ROOT, 'media\/')$/;"	kind:variable	line:144
+MEDIA_URL	mainSite/settings.py	/^MEDIA_URL = '\/media\/'$/;"	kind:variable	line:148
 MIDDLEWARE	mainSite/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:50
 Migration	onboarding/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
 Migration	onboarding/migrations/0002_auto_20170317_1013.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
