@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 from django.conf import settings
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageEnhance
 import sys
 
 import pyocr
@@ -22,7 +22,7 @@ def ocr(name):
     #warped = four_point_transform(image, pts)
     ratio = image.shape[0]/500.0
     orig = image.copy()
-    image = imutils.resize(image, height=700)
+    image = imutils.resize(image, height=600)
 
     ################ Init the OCR tools #####################
     tools = pyocr.get_available_tools()
@@ -89,7 +89,39 @@ def ocr(name):
     #pil_im = Image.fromarray(imutils.resize(image, height=1000))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     pil_im = Image.fromarray(image)
-    pil_im.show()
+    pil_copy = pil_im.copy()
+
+    drawNameOne = ImageDraw.Draw(pil_im)
+    drawNameOne.line((260,100,430,100), fill=0, width=3)
+    drawNameOne.line((260,100,260,145), fill=0, width=3)
+    drawNameOne.line((430,100,430,145), fill=0, width=3)
+    drawNameOne.line((260,145,430,145), fill=0, width=3)
+    areaOne = (260,100,430,145)
+
+    drawNameTwo = ImageDraw.Draw(pil_im)
+    drawNameTwo.line((260,140,430,140), fill=0, width=3)
+    drawNameTwo.line((260,140,260,185), fill=0, width=3)
+    drawNameTwo.line((430,140,430,185), fill=0, width=3)
+    drawNameTwo.line((260,185,430,185), fill=0, width=3)
+    areaTwo = (260,140,430,185)
+
+    drawNameThree = ImageDraw.Draw(pil_im)
+    drawNameThree.line((260,180,430,180), fill=0, width=3)
+    drawNameThree.line((260,180,260,225), fill=0, width=3)
+    drawNameThree.line((430,180,430,225), fill=0, width=3)
+    drawNameThree.line((260,225,430,225), fill=0, width=3)
+    areaThree = (260,180,430,225)
+
+    factor = 1.8
+    croppedOne = ImageEnhance.Sharpness(pil_copy.crop(areaOne)).enhance(factor)
+    croppedTwo = ImageEnhance.Sharpness(pil_copy.crop(areaTwo)).enhance(factor)
+    croppedThree = ImageEnhance.Sharpness(pil_copy.crop(areaThree)).enhance(factor)
+
+    ImageEnhance.Sharpness(pil_im).enhance(factor).show()
+    croppedOne.show()
+    croppedTwo.show()
+    croppedThree.show()
+
 
     txt = tool.image_to_string(
         pil_im,
@@ -97,7 +129,30 @@ def ocr(name):
         lang="spa",
         builder=pyocr.builders.TextBuilder()
     )
+
+    nameOne = tool.image_to_string(
+        croppedOne,
+        #imutils.resize(warped, height=650),
+        lang="spa",
+        builder=pyocr.builders.TextBuilder()
+    )
+    nameTwo = tool.image_to_string(
+        croppedTwo,
+        #imutils.resize(warped, height=650),
+        lang="spa",
+        builder=pyocr.builders.TextBuilder()
+    )
+    lastName = tool.image_to_string(
+        croppedThree,
+        #imutils.resize(warped, height=650),
+        lang="spa",
+        builder=pyocr.builders.TextBuilder()
+    )
     print (txt)
+    print("\n\n\n" + nameOne)
+    print("\n\n\n" + nameTwo)
+    print("\n\n\n" + lastName)
+    
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return

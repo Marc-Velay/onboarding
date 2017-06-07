@@ -25,7 +25,7 @@ BASE_DIR = dirname(mainSite.__file__)
 def index(request):
     documents = ImageSnapshot.objects.all()
     #ocr("fotodniRotated.jpg")   #rotated the image to display image transform
-    #ocr("fotodni.jpg")         #original image
+    ocr("fotodni.jpg")         #original image
     return render(request, 'onboarding/onboarding.html', {'documents': documents})
 
 
