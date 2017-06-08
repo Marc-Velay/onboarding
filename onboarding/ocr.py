@@ -5,6 +5,7 @@ from . import imutils
 from skimage.filters import threshold_adaptive
 import numpy as np
 import cv2
+import json, codecs
 from django.conf import settings
 
 from PIL import Image, ImageDraw, ImageEnhance
@@ -148,11 +149,13 @@ def ocr(name):
         lang="spa",
         builder=pyocr.builders.TextBuilder()
     )
-    print (txt)
+    #print (txt)
     print("\n\n\n" + nameOne)
     print("\n\n\n" + nameTwo)
     print("\n\n\n" + lastName)
-    
+    readData = {}
+    readData = json.dumps({"firstName": nameOne, "secondName": nameTwo, "lastName": lastName})
+    print("one: " + readData)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    return
+    return readData

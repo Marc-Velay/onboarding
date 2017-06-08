@@ -33,6 +33,13 @@
     <a href="{% url 'home:index' %}"><button >Return to home page</button></a>
     <script type="text/javascript">
         window.CSRF_TOKEN = "{{ csrf_token }}";
+        var data = "{{ readData }}";
+        data = data.replace(/&quot;/g, '"');
+        data = data.replace(/\n/g, ' ');
+        console.log(data);
+        data = JSON.parse(data);
+        console.log(data);
+        alert("first name: " + data.firstName + "\n second name: " + data.secondName + "\n last name: " + data.lastName);
     </script>
 </body>
 

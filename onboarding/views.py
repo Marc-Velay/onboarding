@@ -23,10 +23,12 @@ from .ocr import ocr
 # Create your views here.
 BASE_DIR = dirname(mainSite.__file__)
 def index(request):
+    readData = {}
     documents = ImageSnapshot.objects.all()
     #ocr("fotodniRotated.jpg")   #rotated the image to display image transform
-    ocr("fotodni.jpg")         #original image
-    return render(request, 'onboarding/onboarding.html', {'documents': documents})
+    readData = ocr("fotodni.jpg")         #original image
+    print("two: " + readData)
+    return render(request, 'onboarding/onboarding.html', {'documents': documents, 'readData': readData})
 
 
 def liste(request):
@@ -41,9 +43,8 @@ def liste(request):
                 data = ContentFile(b64decode(img_txt), name)
                 model = ImageSnapshot(nom=name)
                 model.model_pic.save(name, data)
-                ocr(name)
+                readData = ocr(name)
                 model.save()
-
                 #return redirect('/onboarding/liste/')
 
     # Load documents for the list page
