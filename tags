@@ -21,7 +21,7 @@ ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1'
 ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:33
 AUTH_PASSWORD_VALIDATORS	mainSite/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:100
 BASE_DIR	onboarding/models.py	/^BASE_DIR = os.path.dirname(mainSite.__file__)$/;"	kind:variable	line:7
-BASE_DIR	onboarding/views.py	/^BASE_DIR = dirname(mainSite.__file__)$/;"	kind:variable	line:24
+BASE_DIR	onboarding/views.py	/^BASE_DIR = dirname(mainSite.__file__)$/;"	kind:variable	line:23
 Choice	polls/models.py	/^class Choice(models.Model):$/;"	kind:class	line:17
 DATABASES	mainSite/settings.py	/^DATABASES = {$/;"	kind:variable	line:85
 DEBUG	mainSite/settings.py	/^DEBUG = True$/;"	kind:variable	line:31
@@ -115,12 +115,12 @@ four_point_transform	onboarding/transform.py	/^def four_point_transform(image, p
 image	onboarding/forms.py	/^    image = forms.ImageField(label="Select")$/;"	kind:variable	line:6
 imutils.py	onboarding/imutils.py	1;"	kind:file	line:1
 index	home/views.py	/^def index(request):$/;"	kind:function	line:5
-index	onboarding/views.py	/^def index(request):$/;"	kind:function	line:25
+index	onboarding/views.py	/^def index(request):$/;"	kind:function	line:24
 index	polls/views.py	/^def index(request):$/;"	kind:function	line:8
 initial	onboarding/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
 initial	onboarding/migrations/0003_examplemodel.py	/^    initial = True$/;"	kind:variable	line:10
 initial	polls/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
-liste	onboarding/views.py	/^def liste(request):$/;"	kind:function	line:32
+liste	onboarding/views.py	/^def liste(request):$/;"	kind:function	line:33
 manage.py	manage.py	1;"	kind:file	line:1
 model_name	onboarding/migrations/0001_initial.py	/^            model_name='choice',$/;"	kind:variable	line:34
 model_name	onboarding/migrations/0002_auto_20170317_1013.py	/^            model_name='choice',$/;"	kind:variable	line:16
@@ -163,7 +163,7 @@ name	polls/migrations/0001_initial.py	/^            name='Choice',$/;"	kind:vari
 name	polls/migrations/0001_initial.py	/^            name='Question',$/;"	kind:variable	line:26
 name	polls/migrations/0001_initial.py	/^            name='question',$/;"	kind:variable	line:35
 nom	onboarding/models.py	/^    nom = models.CharField(max_length=30, default='')$/;"	kind:variable	line:11
-ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:17
+ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:18
 ocr.py	onboarding/ocr.py	1;"	kind:file	line:1
 operations	onboarding/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
 operations	onboarding/migrations/0002_auto_20170317_1013.py	/^    operations = [$/;"	kind:variable	line:14

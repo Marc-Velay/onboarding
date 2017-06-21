@@ -1,13 +1,14 @@
 import os
 import mainSite
-from .transform import four_point_transform
-from . import imutils
+#from .transform import four_point_transform
+#from . import imutils
 from skimage.filters import threshold_adaptive
 import numpy as np
-import cv2
+#import cv2
 import json, codecs
 from django.conf import settings
 
+import PIL
 from PIL import Image, ImageDraw, ImageEnhance
 import sys
 
@@ -17,13 +18,17 @@ import pyocr.builders
 def ocr(name):
     print("ocr")
     ############# get the image to be processed ###################
-    image = cv2.imread(os.path.join(settings.MEDIA_ROOT, 'onboarding/') + name, -1)
+    #image = cv2.imread(os.path.join(settings.MEDIA_ROOT, 'onboarding/') + name, -1)
+    pil_im = Image.open(os.path.join(settings.MEDIA_ROOT, 'onboarding/') + name)
     #cv2.waitKey(0)
     #pts = np.array([(73, 239), (356, 117), (475, 265), (187, 443)], dtype="float32")
     #warped = four_point_transform(image, pts)
-    ratio = image.shape[0]/500.0
-    orig = image.copy()
-    image = imutils.resize(image, height=600)
+    basewidth = 800
+    baseHeight = 500
+    pil_im = pil_im.resize((basewidth, baseHeight), PIL.Image.ANTIALIAS)
+    #ratio = image.shape[0]/500.0
+    pil_copy = pil_im.copy()
+    #image = imutils.resize(image, height=600)
 
     ################ Init the OCR tools #####################
     tools = pyocr.get_available_tools()
@@ -88,9 +93,9 @@ def ocr(name):
     #cv2.imshow("Scanned", imutils.resize(warped, height=650))
 
     #pil_im = Image.fromarray(imutils.resize(image, height=1000))
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    pil_im = Image.fromarray(image)
-    pil_copy = pil_im.copy()
+    #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #pil_im = Image.fromarray(image)
+    #pil_copy = pil_im.copy()
 
     drawNameOne = ImageDraw.Draw(pil_im)
     drawNameOne.line((260,100,430,100), fill=0, width=3)
@@ -156,6 +161,4 @@ def ocr(name):
     readData = {}
     readData = json.dumps({"firstName": nameOne, "secondName": nameTwo, "lastName": lastName})
     print("one: " + readData)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     return readData

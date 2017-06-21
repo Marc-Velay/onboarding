@@ -9,14 +9,13 @@ from django.shortcuts import render
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-import cv2
 import mainSite
 
 #from .forms import ImageUploadForm
 from .models import ImageSnapshot
 #from django.conf import settings
 
-#from PIL import Imag
+#from PIL import Image
 
 from .ocr import ocr
 
