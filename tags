@@ -111,9 +111,7 @@ fields	onboarding/migrations/0008_auto_20170322_2243.py	/^            fields=[$/
 fields	polls/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:19
 fields	polls/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:27
 forms.py	onboarding/forms.py	1;"	kind:file	line:1
-four_point_transform	onboarding/transform.py	/^def four_point_transform(image, pts):$/;"	kind:function	line:27
 image	onboarding/forms.py	/^    image = forms.ImageField(label="Select")$/;"	kind:variable	line:6
-imutils.py	onboarding/imutils.py	1;"	kind:file	line:1
 index	home/views.py	/^def index(request):$/;"	kind:function	line:5
 index	onboarding/views.py	/^def index(request):$/;"	kind:function	line:24
 index	polls/views.py	/^def index(request):$/;"	kind:function	line:8
@@ -178,19 +176,14 @@ operations	onboarding/migrations/0010_auto_20170325_1831.py	/^    operations = [
 operations	onboarding/migrations/0011_auto_20170327_0126.py	/^    operations = [$/;"	kind:variable	line:14
 operations	onboarding/migrations/0012_auto_20170411_0616.py	/^    operations = [$/;"	kind:variable	line:14
 operations	polls/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
-order_points	onboarding/transform.py	/^def order_points(pts):$/;"	kind:function	line:5
 pub_date	polls/models.py	/^    pub_date = models.DateTimeField('date published')$/;"	kind:variable	line:11
 question	polls/models.py	/^    question = models.ForeignKey(Question, on_delete=models.CASCADE)$/;"	kind:variable	line:18
 question_text	polls/models.py	/^    question_text = models.CharField(max_length=200)$/;"	kind:variable	line:10
-resize	onboarding/imutils.py	/^def resize(image, width = None, height = None, inter = cv2.INTER_AREA):$/;"	kind:function	line:28
 results	polls/views.py	/^def results(request, question_id):$/;"	kind:function	line:16
-rotate	onboarding/imutils.py	/^def rotate(image, angle, center=None, scale=1.0):$/;"	kind:function	line:12
 settings.py	mainSite/settings.py	1;"	kind:file	line:1
 tests.py	home/tests.py	1;"	kind:file	line:1
 tests.py	onboarding/tests.py	1;"	kind:file	line:1
 tests.py	polls/tests.py	1;"	kind:file	line:1
-transform.py	onboarding/transform.py	1;"	kind:file	line:1
-translate	onboarding/imutils.py	/^def translate(image, x, y):$/;"	kind:function	line:4
 uploaded_at	onboarding/models.py	/^    uploaded_at = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:10
 urlpatterns	home/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5
 urlpatterns	mainSite/urls.py	/^urlpatterns = [$/;"	kind:variable	line:21

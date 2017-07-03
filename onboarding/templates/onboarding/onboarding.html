@@ -27,6 +27,16 @@
         <input type="file" id="image" name="image" style="display: none">
         <p><input type="submit" value="Upload" id="subButton" /></p>
     </form>
+
+    <form action="/action_page.php">
+        First name:<br>
+        <input id="fnameForm" type="text" name="firstname" value="">
+        <br> Last name:<br>
+        <input id="lnameForm" type="text" name="lastname" value="">
+        <br><br>
+        <input type="submit" value="Upload" id="confDataButton">
+    </form>
+
     <div id="Template">{% include "onboarding/liste.html" %}</div>
 
     <br>
@@ -40,6 +50,10 @@
         data = JSON.parse(data);
         console.log(data);
         alert("first name: " + data.firstName + "\n second name: " + data.secondName + "\n last name: " + data.lastName);
+        fnameItem = document.getElementById('fnameForm');
+        lnameItem = document.getElementById('lnameForm');
+        fnameItem.value = data.firstName;
+        lnameItem.value = data.secondName;
     </script>
 </body>
 

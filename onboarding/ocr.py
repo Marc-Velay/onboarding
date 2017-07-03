@@ -34,7 +34,7 @@ def ocr(name):
     tools = pyocr.get_available_tools()
     if len(tools) == 0:
         print("No OCR tool found")
-        sys.exit(1)
+        return {}
     # The tools are returned in the recommended order of usage
     tool = tools[0]
     print("Will use tool '%s'" % (tool.get_name()))
