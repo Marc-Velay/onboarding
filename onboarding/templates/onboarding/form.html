@@ -1,0 +1,21 @@
+<!-- List of uploaded documents -->
+{% if readData %}
+
+<pre>
+{{ readData }}
+{{ readData.firstName }}
+{{ readData.secondName }}
+{{ readData.lastName }}
+</pre>
+
+<form method='post' enctype='multipart/form-data' id="userData" actionn="/onboarding/liste/">
+    {% csrf_token %} First name:<br>
+    <input id="fnameForm" type="text" name="firstname" value=" {{ readData.firstName }} ">
+    <br> Second name:<br>
+    <input id="snameForm" type="text" name="secondname" value=" {{ readData.secondName }} ">
+    <br> Last name:<br>
+    <input id="lnameForm" type="text" name="lastname" value=" {{ readData.lastName }} ">
+    <br><br>
+    <input type="submit" value="Upload" id="confDataButton">
+</form>
+{% endif %}

@@ -24,7 +24,7 @@ def ocr(name):
     #pts = np.array([(73, 239), (356, 117), (475, 265), (187, 443)], dtype="float32")
     #warped = four_point_transform(image, pts)
     basewidth = 800
-    baseHeight = 500
+    baseHeight = 600
     pil_im = pil_im.resize((basewidth, baseHeight), PIL.Image.ANTIALIAS)
     #ratio = image.shape[0]/500.0
     pil_copy = pil_im.copy()
@@ -36,6 +36,7 @@ def ocr(name):
         print("No OCR tool found")
         return {}
     # The tools are returned in the recommended order of usage
+    print(tools)
     tool = tools[0]
     print("Will use tool '%s'" % (tool.get_name()))
     # Select spanish language
@@ -92,31 +93,41 @@ def ocr(name):
     #cv2.imshow("Original", imutils.resize(orig, height=650))
     #cv2.imshow("Scanned", imutils.resize(warped, height=650))
 
-    #pil_im = Image.fromarray(imutils.resize(image, height=1000))
+    #pil_im = Image.fromarray(imutils.resize(image, height=900))
     #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     #pil_im = Image.fromarray(image)
     #pil_copy = pil_im.copy()
 
+    '''
+    nameWidth = 160
+    nameHeight = 45
+
+    nameOneX = 235
+    nameOneY = 110
     drawNameOne = ImageDraw.Draw(pil_im)
-    drawNameOne.line((260,100,430,100), fill=0, width=3)
-    drawNameOne.line((260,100,260,145), fill=0, width=3)
-    drawNameOne.line((430,100,430,145), fill=0, width=3)
-    drawNameOne.line((260,145,430,145), fill=0, width=3)
-    areaOne = (260,100,430,145)
+    drawNameOne.line((nameOneX, nameOneY, nameOneX + nameWidth, nameOneY), fill=0, width=3)
+    drawNameOne.line((nameOneX, nameOneY, nameOneX, nameOneY + nameHeight), fill=0, width=3)
+    drawNameOne.line((nameOneX + nameWidth, nameOneY, nameOneX + nameWidth, nameOneY + nameHeight), fill=0, width=3)
+    drawNameOne.line((nameOneX, nameOneY + nameHeight, nameOneX + nameWidth, nameOneY + nameHeight), fill=0, width=3)
+    areaOne = (nameOneX, nameOneY, nameOneX + nameWidth, nameOneY + nameHeight)
 
+    nameTwoX = 235
+    nameTwoY = 155
     drawNameTwo = ImageDraw.Draw(pil_im)
-    drawNameTwo.line((260,140,430,140), fill=0, width=3)
-    drawNameTwo.line((260,140,260,185), fill=0, width=3)
-    drawNameTwo.line((430,140,430,185), fill=0, width=3)
-    drawNameTwo.line((260,185,430,185), fill=0, width=3)
-    areaTwo = (260,140,430,185)
+    drawNameTwo.line((nameTwoX, nameTwoY, nameTwoX + nameWidth, nameTwoY), fill=0, width=3)
+    drawNameTwo.line((nameTwoX, nameTwoY, nameTwoX, nameTwoY + nameHeight), fill=0, width=3)
+    drawNameTwo.line((nameTwoX + nameWidth, nameTwoY, nameTwoX + nameWidth, nameTwoY + nameHeight), fill=0, width=3)
+    drawNameTwo.line((nameTwoX, nameTwoY + nameHeight, nameTwoX + nameWidth, nameTwoY + nameHeight), fill=0, width=3)
+    areaTwo = (nameTwoX, nameTwoY, nameTwoX + nameWidth, nameTwoY + nameHeight)
 
+    nameThreeX = 235
+    nameThreeY = 185
     drawNameThree = ImageDraw.Draw(pil_im)
-    drawNameThree.line((260,180,430,180), fill=0, width=3)
-    drawNameThree.line((260,180,260,225), fill=0, width=3)
-    drawNameThree.line((430,180,430,225), fill=0, width=3)
-    drawNameThree.line((260,225,430,225), fill=0, width=3)
-    areaThree = (260,180,430,225)
+    drawNameThree.line((nameThreeX, nameThreeY, nameThreeX + nameWidth, nameThreeY), fill=0, width=3)
+    drawNameThree.line((nameThreeX, nameThreeY, nameThreeX, nameThreeY + nameHeight), fill=0, width=3)
+    drawNameThree.line((nameThreeX + nameWidth, nameThreeY, nameThreeX + nameWidth, nameThreeY + nameHeight), fill=0, width=3)
+    drawNameThree.line((nameThreeX, nameThreeY + nameHeight, nameThreeX + nameWidth, nameThreeY + nameHeight), fill=0, width=3)
+    areaThree = (nameThreeX, nameThreeY, nameThreeX + nameWidth, nameThreeY + nameHeight)
 
     factor = 1.8
     croppedOne = ImageEnhance.Sharpness(pil_copy.crop(areaOne)).enhance(factor)
@@ -135,7 +146,7 @@ def ocr(name):
         lang="spa",
         builder=pyocr.builders.TextBuilder()
     )
-
+    print(txt)
     nameOne = tool.image_to_string(
         croppedOne,
         #imutils.resize(warped, height=650),
@@ -158,7 +169,33 @@ def ocr(name):
     print("\n\n\n" + nameOne)
     print("\n\n\n" + nameTwo)
     print("\n\n\n" + lastName)
-    readData = {}
-    readData = json.dumps({"firstName": nameOne, "secondName": nameTwo, "lastName": lastName})
+    '''
+
+    nameWidth = 780
+    nameHeight = 230
+
+    nameOneX = 10
+    nameOneY = 330
+    drawNameOne = ImageDraw.Draw(pil_im)
+    drawNameOne.line((nameOneX, nameOneY, nameOneX + nameWidth, nameOneY), fill=0, width=3)
+    drawNameOne.line((nameOneX, nameOneY, nameOneX, nameOneY + nameHeight), fill=0, width=3)
+    drawNameOne.line((nameOneX + nameWidth, nameOneY, nameOneX + nameWidth, nameOneY + nameHeight), fill=0, width=3)
+    drawNameOne.line((nameOneX, nameOneY + nameHeight, nameOneX + nameWidth, nameOneY + nameHeight), fill=0, width=3)
+    areaOne = (nameOneX, nameOneY, nameOneX + nameWidth, nameOneY + nameHeight)
+
+    factor = 1.8
+    croppedOne = ImageEnhance.Sharpness(pil_copy.crop(areaOne)).enhance(factor)
+    ImageEnhance.Sharpness(pil_im).enhance(factor).show()
+    croppedOne.show()
+
+    nameOne = tool.image_to_string(
+        croppedOne,
+        lang="spa",
+        builder=pyocr.builders.TextBuilder()
+    )
+
+    readData = json.dumps({"firstName": "", "secondName": "", "lastName": ""})
+    #readData = json.dumps({"firstName": nameOne, "secondName": nameTwo, "lastName": lastName})
+    readData = json.dumps({"firstName": nameOne})
     print("one: " + readData)
     return readData

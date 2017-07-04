@@ -90,3 +90,6 @@ ENV/
 
 #IDE folder
 .vscode/
+.idea/
+
+*.png

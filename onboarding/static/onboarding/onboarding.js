@@ -37,28 +37,28 @@ window.onload = function() {
             video.onloadedmetadata = function(e) {
                 var can = document.getElementById('overlay');
                 var bump = document.getElementById('bump');
-
                 video.play();
 
                 videoPlaying = true;
                 can.style.position = "absolute";
                 v.style.position = "absolute";
-                can.style.width = v.videoWidth + "px";
-                can.style.height = v.videoHeight + "px";
-                bump.style.marginBottom = v.videoHeight + "px";
+                //can.style.width = v.videoWidth + "px";
+                //can.style.height = v.videoHeight + "px";
+                //bump.style.marginBottom = v.videoHeight + "px";
             };
         }).catch(function(error) {
             console.log("ERROR");
             console.log(error);
         });
 
-        // Listen for user click on the "take a photo" button
-        document.getElementById('take').addEventListener('click', function() {
+        function capture() {
             if (videoPlaying) {
+                var bump = document.getElementById('take');
                 var canvas = document.getElementById('canvas');
-                canvas.width = v.videoWidth;
-                canvas.height = v.videoHeight;
-                canvas.getContext('2d').drawImage(v, 0, 0);
+                bump.style.marginTop = "30px";
+                canvas.width = 800;
+                canvas.height = 600;
+                canvas.getContext('2d').drawImage(v, 0, 0, 800, 600);
 
                 var data = canvas.toDataURL('image/png');
                 document.getElementById('photo').setAttribute('src', data);
@@ -67,7 +67,19 @@ window.onload = function() {
                     formdata.append("image", data);   
                 }
             }
+        }
+
+        // Listen for user click on the "take a photo" button
+        document.getElementById('take').addEventListener('click', function() {
+            capture();
         }, false);
+
+        document.addEventListener("keypress", function(event) {
+            if (event.keyCode == 32 && event.target == document.body) {
+                event.preventDefault();
+                capture();
+            }
+        })
 
         document.getElementById('subButton').addEventListener('click', function() {
             if (formdata && document.getElementById('photo').getAttribute('src') != "") {
@@ -81,6 +93,5 @@ window.onload = function() {
                 });        
             }
         }, false);
-
     })();
 }
