@@ -1,7 +1,24 @@
 window.onload = function() {
     (function() {
         jQuery.noConflict();
-        formdata = new FormData();
+        var formdata = new FormData();
+        var state = "front";
+
+        document.getElementById('subButton').style.display = "none";
+        document.getElementById('userData').style.display = "none";
+        document.getElementById('confPicture').style.display = "none";
+        document.getElementById('front_layout').style.display = "block";
+
+
+        window.onbeforeunload = function() {
+            var txt;
+            var r = confirm("Are you sure you want to refresh the page? Your registration will not be taken into account");
+            if (r == true) {
+                txt = "You pressed OK!";
+            } else {
+                txt = "You pressed Cancel!";
+            }
+        }
 
         function userMedia() {
             return navigator.getUserMedia = navigator.getUserMedia ||
@@ -62,35 +79,121 @@ window.onload = function() {
 
                 var data = canvas.toDataURL('image/png');
                 document.getElementById('photo').setAttribute('src', data);
+                /*uploaded data
                 if (formdata) {
                     formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
                     formdata.append("image", data);   
                 }
+                */
             }
+        }
+
+        function selectPicture() {
+            var imgData = document.getElementById('photo').getAttribute('src');
+            //console.log(imgData);
+            if(state == "front") {
+                localStorage.setItem("frontData", imgData);
+            } else {
+                localStorage.setItem("backData", imgData);
+            }
+        }
+
+        function uploadDocs() {
+            if (formdata) {
+                formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
+                //formdata.append("frontImage", localStorage.getItem("frontData"));   
+                formdata.append("backImage", localStorage.getItem("backData")); 
+                formdata.append("state", "first");  
+                jQuery.ajax({
+                        url: "/onboarding/doc_scan/",
+                        type: "POST",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, status, xhttp) {
+                            console.log(status);
+                            if(data) {
+
+                                //localStorage.setItem("userData", JSON.stringify(data.response));
+                                var user = JSON.parse(data.response);
+
+                                document.getElementById('subButton').style.display = "none";
+                                document.getElementById('side').style.display = "none";
+                                document.getElementById('v').style.display = "none";
+                                document.getElementById('overlay').style.display = "none";
+                                document.getElementById('canvas').style.display = "none";
+                                document.getElementById('bump').style.display = "none";
+                                document.getElementById('photo').style.display = "none";
+                                document.getElementById('take').style.display = "none";
+                                document.getElementById('spacebarRec').style.display = "none";
+                                document.getElementById('confPicture').style.display = "none";
+                                document.getElementById('form').style.display = "none";
+                                document.getElementById('userData').style.display = "block";
+                                document.getElementById('instructions').innerHTML = "Please fill the form with your informations";
+
+                                fnameItem = document.getElementById('fnameForm');
+                                lnameItem = document.getElementById('lnameForm');
+                                nationalityItem = document.getElementById('nationalityForm');
+                                doeItem = document.getElementById('doeForm');
+                                dobItem = document.getElementById('dobForm');
+                                sexItem = document.getElementById('sexForm');
+                                dniItem = document.getElementById('dniForm');
+
+                                fnameItem.value = user.first_name;
+                                lnameItem.value = user.last_name;
+                                nationalityItem.value = user.nationality;
+                                doeItem.value = user.doe;
+                                dobItem.value = user.dob;
+                                sexItem.value = user.sex;
+                                dniItem.value = user.dni;
+                            }
+                        }
+                 });
+            }
+            alert("we have uploaded your documents");
         }
 
         // Listen for user click on the "take a photo" button
         document.getElementById('take').addEventListener('click', function() {
             capture();
+            document.getElementById('confPicture').style.display = "block";
         }, false);
 
         document.addEventListener("keypress", function(event) {
             if (event.keyCode == 32 && event.target == document.body) {
                 event.preventDefault();
                 capture();
+                document.getElementById('confPicture').style.display = "block";
             }
         })
 
         document.getElementById('subButton').addEventListener('click', function() {
             if (formdata && document.getElementById('photo').getAttribute('src') != "") {
                 jQuery.ajax({
-                    url: "liste/",
+                    url: "onboarding/doc_scan/",
                     type: "POST",
                     data: formdata,
                     processData: false,
                     contentType: false,
                     success: function() { alert("success"); }
                 });        
+            }
+        }, false);
+
+        document.getElementById('confPicture').addEventListener('click', function() {
+            selectPicture();
+            //document.getElementById('testPhoto').setAttribute('src', localStorage.getItem("frontData"));
+            if(state == "front") {
+                state = "back";
+                document.getElementById('side').innerHTML = "Please scan the back side of your card";
+                document.getElementById('front_layout').style.display = "none";
+                document.getElementById('back_layout').style.display = "block";
+                document.getElementById('confPicture').style.display = "none";
+                document.getElementById('testPhoto').setAttribute('src', '');
+                document.getElementById('photo').setAttribute('src', '');
+                document.getElementById('take').style.marginTop = "600px";
+            } else if(state == "back") {
+                uploadDocs();
             }
         }, false);
     })();

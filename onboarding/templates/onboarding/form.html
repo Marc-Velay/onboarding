@@ -1,21 +1,84 @@
-<!-- List of uploaded documents -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CIMD Onboarding</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'onboarding/onboarding.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'onboarding/onboarding.css' %}">
+</head>
+
+<body>
+
+    <h2 id="instructions">Please align your DNI with the black lines: </h2>
+    <h2 id="side">Please scan the front side of your card</h2>
+    <video width="800" height="600" id="v"></video>
+    <svg width="800" height="600" id="overlay">
+        <rect id="front_layout" x="570" y="270" width="190" height="230" fill='rgba(0,240,0,0.1)' fill-opacity='0.1' style="stroke:black;stroke-width:3;display: none;" ></rect>
+        <rect id="back_layout" x="30" y="30" width="450" height="250" fill='rgba(0,240,0,0.1)' fill-opacity='0.1' style="stroke:black;stroke-width:3;display: none;" ></rect>
+        <rect x="30" y="30" width="740" height="480" fill='rgba(0,0,0,0.0)' fill-opacity='0.0' style="stroke:black;stroke-width:3" ></rect>
+    </svg>
+    <canvas id="canvas" style="display: none"></canvas>
+    <div id="bump" style="width: 1px; height: 1px; margin-bottom:0px"></div>
+    <img style="margin-left: 820px;" src="" id="photo"><br>
+    <button id="take" style="margin-top: 600px;">Take a photo</button>
+    <p id="spacebarRec">Or press the space bar </p>
+    <button id="confPicture" style="">Select picture</button>
+
+    <form method='post' enctype='multipart/form-data' id="form">
+        {% csrf_token %}
+        <input type="file" id="image" name="image" style="display: none">
+        <p><input type="submit" value="Upload" id="subButton" /></p>
+    </form>
+
+    <img src="" id="testPhoto">
+
 {% if readData %}
 
-<pre>
-{{ readData }}
-{{ readData.firstName }}
-{{ readData.secondName }}
-{{ readData.lastName }}
-</pre>
-
-<form method='post' enctype='multipart/form-data' id="userData" actionn="/onboarding/liste/">
+<form method='post' enctype='multipart/form-data' id="userData" action="/onboarding/doc_scan/">
     {% csrf_token %} First name:<br>
-    <input id="fnameForm" type="text" name="firstname" value=" {{ readData.firstName }} ">
-    <br> Second name:<br>
-    <input id="snameForm" type="text" name="secondname" value=" {{ readData.secondName }} ">
+    <input id="fnameForm" type="text" name="firstname" value=" {{ readData.first_name }} ">
     <br> Last name:<br>
-    <input id="lnameForm" type="text" name="lastname" value=" {{ readData.lastName }} ">
+    <input id="lnameForm" type="text" name="lastname" value=" {{ readData.last_name }} ">
+    <br> Nationality:<br>
+    <input id="nationalityForm" type="text" name="nationality" value=" {{ readData.nationality }} ">
+    <br> Date of birth:<br>
+    <input id="dobForm" type="text" name="dob" value=" {{ readData.dob }} ">
+    <br> Date of expiration:<br>
+    <input id="doeForm" type="text" name="doe" value=" {{ readData.doe }} ">
+    <br> Sex:<br>
+    <input id="sexForm" type="text" name="sex" value=" {{ readData.sex }} ">
+    <br> DNI:<br>
+    <input id="dniForm" type="text" name="dni" value=" {{ readData.dni }} ">
     <br><br>
     <input type="submit" value="Upload" id="confDataButton">
 </form>
 {% endif %}
+<br>
+<a href="{% url 'home:index' %}"><button >Return to home page</button></a>
+<script type="text/javascript">
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+
+    //alert("first name: " + data.firstName + "\n second name: " + data.secondName + "\n last name: " + data.lastName);
+    fnameItem = document.getElementById('fnameForm');
+    lnameItem = document.getElementById('lnameForm');
+    nationalityItem = document.getElementById('nationalityForm');
+    doeItem = document.getElementById('doeForm');
+    dobItem = document.getElementById('dobForm');
+    sexItem = document.getElementById('sexForm');
+    dniItem = document.getElementById('dniForm');
+/*
+    fnameItem.value = data.first_name;
+    lnameItem.value = data.last_name;
+    nationalityItem.value = data.nationality;
+    doeItem.value = data.doe;
+    dobItem.value = data.dob;
+    sexItem.value = data.sex;
+    dniItem.value = data.dni;
+*/
+</script>
+</body>
+
+</html>

@@ -11,6 +11,7 @@ from django.conf import settings
 import PIL
 from PIL import Image, ImageDraw, ImageEnhance
 import sys
+import re
 
 import pyocr
 import pyocr.builders
@@ -36,13 +37,12 @@ def ocr(name):
         print("No OCR tool found")
         return {}
     # The tools are returned in the recommended order of usage
-    print(tools)
     tool = tools[0]
     print("Will use tool '%s'" % (tool.get_name()))
     # Select spanish language
     langs = tool.get_available_languages()
     print("Available languages: %s" % ", ".join(langs))
-    lang = langs[2]
+    lang = langs[3]
     print("Will use lang '%s'" % (lang))
 
     ############### Filter image to get a flat grayscale version ################
@@ -183,19 +183,117 @@ def ocr(name):
     drawNameOne.line((nameOneX, nameOneY + nameHeight, nameOneX + nameWidth, nameOneY + nameHeight), fill=0, width=3)
     areaOne = (nameOneX, nameOneY, nameOneX + nameWidth, nameOneY + nameHeight)
 
-    factor = 1.8
+    factor = 2.1
     croppedOne = ImageEnhance.Sharpness(pil_copy.crop(areaOne)).enhance(factor)
-    ImageEnhance.Sharpness(pil_im).enhance(factor).show()
-    croppedOne.show()
+    croppedOne = ImageEnhance.Contrast(croppedOne).enhance(factor/2)
+    ImageEnhance.Sharpness(pil_im).enhance(factor) #.show()
+    #croppedOne.show()
 
-    nameOne = tool.image_to_string(
+    ocr_txt = tool.image_to_string(
         croppedOne,
         lang="spa",
         builder=pyocr.builders.TextBuilder()
     )
 
-    readData = json.dumps({"firstName": "", "secondName": "", "lastName": ""})
-    #readData = json.dumps({"firstName": nameOne, "secondName": nameTwo, "lastName": lastName})
-    readData = json.dumps({"firstName": nameOne})
-    print("one: " + readData)
+    list_lines = ocr_txt.split('\n')
+    line_nb = 0
+    print(list_lines)
+    for line in list_lines:
+        print(len(line))
+    print("num lines: ", len(list_lines))
+    while line_nb < len(list_lines):
+        if len(list_lines[line_nb]) <= 20:
+            del list_lines[line_nb]
+        line_nb += 1
+    if len(list_lines) > 1:
+        if len(list_lines[len(list_lines)-1]) <= 20:
+            del list_lines[len(list_lines)-1]
+    for line in list_lines:
+        print(len(line))
+    print("num lines: ", len(list_lines))
+
+    if len(list_lines) < 3:
+        print("rescan please")
+        return json.dumps({"first_name": "", "last_ame": "", "nationality": "", "doe": "", "dob": "", "sex": "", "dni": ""})
+    print("")
+
+    first_line = list_lines[0].split('<')[0]
+    print(first_line)
+    characters = list(first_line)
+    doc_type = '' + characters[0] + characters[1]
+    new_doc = ''.join(let for let in list(doc_type) if let.isalnum())
+    doc_type = new_doc
+    print("Doc type: ", doc_type)
+    country = ''.join(characters[2:4])
+    new_country = ''.join(let for let in list(country) if let.isalnum())
+    country = new_country
+    print("country: ", country)
+    hardware_num = ''.join(characters[5:14])
+    new_hardware = ''.join(let for let in list(hardware_num) if let.isalnum())
+    hardware_num = new_hardware
+    print("Hardware number: ", hardware_num)
+    conf_num1 = ''.join(re.sub(r"\D", "", characters[15]))
+    print("Conf number 1: ", conf_num1)
+    dni = ''.join(characters[16:])
+    new_dni = ''.join(let for let in list(dni) if let.isalnum())
+    dni = new_dni
+    print("DNI number: ", dni)
+    print("")
+
+    second_line = list_lines[1].split('<')
+    second_line = list(filter(None, second_line))
+    print(second_line)
+    characters = list(second_line[0])
+    nationality = ''
+    if len(characters) >= 18:
+        dob = ''.join(re.sub(r"\D", "", ''.join(characters[0:6])))
+        print("Date of birth: ", dob)
+        conf_num2 = ''.join(re.sub(r"\D", "", characters[6]))
+        print("Conf number 2: ", conf_num2)
+        sex = '' + characters[7]
+        if sex != 'M' or sex != 'F':
+            sex = 'M'
+        print("sex: ", sex)
+        doe = ''.join(re.sub(r"\D", "", ''.join(characters[8:14])))
+        print("Date of expiration: ", doe)
+        conf_num3 = ''.join(re.sub(r"\D", "", characters[14]))
+        print("Conf number 3: ", conf_num3)
+        nationality = ''.join(characters[15:18])
+        new_nationality = ''.join(let for let in list(nationality) if let.isalnum())
+        nationality = new_nationality
+        print("nationality: ", nationality)
+    conf_num4 = None
+    for part in second_line[1:]:
+        conf_num4 = re.sub(r"\D", "", part)
+        if conf_num4 is not None:
+            break
+    print("conf number 4: ", conf_num4)
+    print("")
+
+    names = list_lines[2].split('<<')
+    names = list(filter(None, names))
+    last_name = names[0].split('<')
+    first_name = []
+    name_num = 0
+    while name_num < len(last_name):
+        new_name = ''.join(let for let in last_name[name_num] if let.isalnum())
+        last_name[name_num] = new_name + " "
+        name_num += 1
+    print(last_name)
+    if len(names) > 1:
+        first_name = names[1].split('<')
+        name_num = 0
+        while name_num < len(first_name):
+            new_name = ''.join(let for let in first_name[name_num] if let.isalnum())
+            first_name[name_num] = new_name + " "
+            name_num += 1
+        print(first_name)
+
+    readData = json.dumps({"first_name": ''.join(first_name),
+                           "last_name": ''.join(last_name),
+                           "nationality": nationality,
+                           "doe": doe,
+                           "sex": sex,
+                           "dob": dob,
+                           "dni": dni})
     return readData
