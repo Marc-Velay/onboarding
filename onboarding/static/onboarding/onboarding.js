@@ -79,12 +79,6 @@ window.onload = function() {
 
                 var data = canvas.toDataURL('image/png');
                 document.getElementById('photo').setAttribute('src', data);
-                /*uploaded data
-                if (formdata) {
-                    formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
-                    formdata.append("image", data);   
-                }
-                */
             }
         }
 
@@ -112,7 +106,7 @@ window.onload = function() {
                         contentType: false,
                         success: function(data, status, xhttp) {
                             console.log(status);
-                            if(data) {
+                            if(data.response) {
 
                                 //localStorage.setItem("userData", JSON.stringify(data.response));
                                 var user = JSON.parse(data.response);
@@ -130,6 +124,7 @@ window.onload = function() {
                                 document.getElementById('form').style.display = "none";
                                 document.getElementById('userData').style.display = "block";
                                 document.getElementById('instructions').innerHTML = "Please fill the form with your informations";
+                                document.getElementById('photo').setAttribute('src', '');
 
                                 fnameItem = document.getElementById('fnameForm');
                                 lnameItem = document.getElementById('lnameForm');
@@ -146,11 +141,22 @@ window.onload = function() {
                                 dobItem.value = user.dob;
                                 sexItem.value = user.sex;
                                 dniItem.value = user.dni;
+
+                            } else if(data.error_msg) {
+                                document.getElementById('errorHandling').style.display = "block";
+                                document.getElementById('errorHandling').innerHTML = data.error_msg;
+                                state = "front";
+                                document.getElementById('side').innerHTML = "Please scan the front side of your card";
+                                document.getElementById('back_layout').style.display = "none";
+                                document.getElementById('front_layout').style.display = "block";
+                                document.getElementById('confPicture').style.display = "none";
+                                document.getElementById('testPhoto').setAttribute('src', '');
+                                document.getElementById('photo').setAttribute('src', '');
+                                document.getElementById('take').style.marginTop = "600px";
                             }
                         }
                  });
             }
-            alert("we have uploaded your documents");
         }
 
         // Listen for user click on the "take a photo" button
@@ -192,6 +198,7 @@ window.onload = function() {
                 document.getElementById('testPhoto').setAttribute('src', '');
                 document.getElementById('photo').setAttribute('src', '');
                 document.getElementById('take').style.marginTop = "600px";
+                document.getElementById('errorHandling').innerHTML = '';
             } else if(state == "back") {
                 uploadDocs();
             }

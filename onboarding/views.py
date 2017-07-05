@@ -52,9 +52,11 @@ def doc_scan(request):
                 remove(join(settings.MEDIA_ROOT, 'onboarding/') + name_back)
                 #model.save()
                 print("proc back image")
+                if readData == "error":
+                    return JsonResponse({'error_msg': "Please rescan the document"})
                 return JsonResponse({'response': readData})
             else:
-                return render(request, 'onboarding/form.html', {'error_msg': "Please rescan the document"})
+                return JsonResponse({'error_msg': "Please rescan the document"})
     # ocr("fotodniRotated.jpg")   #rotated the image to display image transform
     # readData = ocr("fotodni.jpg")         #original image
     # /home/gniorg/Documents/CIMD/website/onboarding/media/onboarding/saved1499153129.png

@@ -13,6 +13,7 @@
 <body>
 
     <h2 id="instructions">Please align your DNI with the black lines: </h2>
+    <h2 id="errorHandling" style="display: none; color: #f00"></h2>
     <h2 id="side">Please scan the front side of your card</h2>
     <video width="800" height="600" id="v"></video>
     <svg width="800" height="600" id="overlay">
@@ -35,49 +36,28 @@
 
     <img src="" id="testPhoto">
 
-{% if readData %}
-
 <form method='post' enctype='multipart/form-data' id="userData" action="/onboarding/doc_scan/">
     {% csrf_token %} First name:<br>
-    <input id="fnameForm" type="text" name="firstname" value=" {{ readData.first_name }} ">
+    <input id="fnameForm" type="text" name="firstname" value="">
     <br> Last name:<br>
-    <input id="lnameForm" type="text" name="lastname" value=" {{ readData.last_name }} ">
+    <input id="lnameForm" type="text" name="lastname" value="">
     <br> Nationality:<br>
-    <input id="nationalityForm" type="text" name="nationality" value=" {{ readData.nationality }} ">
+    <input id="nationalityForm" type="text" name="nationality" value="">
     <br> Date of birth:<br>
-    <input id="dobForm" type="text" name="dob" value=" {{ readData.dob }} ">
+    <input id="dobForm" type="text" name="dob" value="">
     <br> Date of expiration:<br>
-    <input id="doeForm" type="text" name="doe" value=" {{ readData.doe }} ">
+    <input id="doeForm" type="text" name="doe" value="">
     <br> Sex:<br>
-    <input id="sexForm" type="text" name="sex" value=" {{ readData.sex }} ">
+    <input id="sexForm" type="text" name="sex" value="">
     <br> DNI:<br>
-    <input id="dniForm" type="text" name="dni" value=" {{ readData.dni }} ">
+    <input id="dniForm" type="text" name="dni" value="">
     <br><br>
     <input type="submit" value="Upload" id="confDataButton">
 </form>
-{% endif %}
 <br>
 <a href="{% url 'home:index' %}"><button >Return to home page</button></a>
 <script type="text/javascript">
     window.CSRF_TOKEN = "{{ csrf_token }}";
-
-    //alert("first name: " + data.firstName + "\n second name: " + data.secondName + "\n last name: " + data.lastName);
-    fnameItem = document.getElementById('fnameForm');
-    lnameItem = document.getElementById('lnameForm');
-    nationalityItem = document.getElementById('nationalityForm');
-    doeItem = document.getElementById('doeForm');
-    dobItem = document.getElementById('dobForm');
-    sexItem = document.getElementById('sexForm');
-    dniItem = document.getElementById('dniForm');
-/*
-    fnameItem.value = data.first_name;
-    lnameItem.value = data.last_name;
-    nationalityItem.value = data.nationality;
-    doeItem.value = data.doe;
-    dobItem.value = data.dob;
-    sexItem.value = data.sex;
-    dniItem.value = data.dni;
-*/
 </script>
 </body>
 

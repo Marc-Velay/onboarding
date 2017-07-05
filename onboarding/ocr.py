@@ -214,7 +214,7 @@ def ocr(name):
 
     if len(list_lines) < 3:
         print("rescan please")
-        return json.dumps({"first_name": "", "last_ame": "", "nationality": "", "doe": "", "dob": "", "sex": "", "dni": ""})
+        return "error"
     print("")
 
     first_line = list_lines[0].split('<')[0]
