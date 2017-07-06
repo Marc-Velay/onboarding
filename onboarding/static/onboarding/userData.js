@@ -92,10 +92,10 @@ window.onload = function() {
                     contentType: false,
                     success: function(data, status, xhttp) {
                         state = "form";
-                        if(data.response) {
+                        if(data/*.response*/) {
                         //TODO remove comment around response
 
-                            var user = JSON.parse(data.response);
+                            //var user = JSON.parse(data.response);
 
                             document.getElementById('subButton').style.display = "none";
                             document.getElementById('side').style.display = "none";
@@ -112,7 +112,7 @@ window.onload = function() {
                             document.getElementById('instructions').innerHTML = "Please fill the form with your informations";
                             document.getElementById('photo').setAttribute('src', '');
 
-                            fnameItem = document.getElementById('fnameForm');
+                            /*fnameItem = document.getElementById('fnameForm');
                             lnameItem = document.getElementById('lnameForm');
                             nationalityItem = document.getElementById('nationalityForm');
                             doeItem = document.getElementById('doeForm');
@@ -126,7 +126,7 @@ window.onload = function() {
                             doeItem.value = user.doe;
                             dobItem.value = user.dob;
                             sexItem.value = user.sex;
-                            dniItem.value = user.dni;
+                            dniItem.value = user.dni;*/
 
                         } else if(data.error_msg) {
                             state = "front";
@@ -173,7 +173,7 @@ window.onload = function() {
                                     if(/^[0-9]{8}[A-Z]{1}$/.test(dni)){
                                         document.forms['userData']['dni'].style.borderColor = "#0f0";
                                         formdata = null;
-                                        userDataJson = {'first_name': first_name, 'last_name': last_name, 'nationality': nationality, 'dob': dob, 'doe': doe, 'sex': sex, 'dni': dni};
+                                        userDataJson = JSON.stringify({'first_name': first_name, 'last_name': last_name, 'nationality': nationality, 'dob': dob, 'doe': doe, 'sex': sex, 'dni': dni});
                                         var formdata = new FormData();
                                         if (formdata) {
                                             formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
@@ -189,8 +189,6 @@ window.onload = function() {
                                                 contentType: false,
                                                 success: function(data, status, xhttp) {
                                                     alert('We have saved your information!');
-                                                    //var video = document.querySelector('video');
-                                                    //mediaStream.getVideoTracks()[0].stop();
                                                 },
                                                 error: function (request, status, error) {
                                                     alert(request.responseText);

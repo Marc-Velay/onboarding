@@ -1,4 +1,19 @@
 <!-- List of uploaded documents -->
+{% if userData %}
+<p>info you entered:</p>
+<ul>
+    {% for user in userData %}
+    <p>{{ user.first_name }}</p>
+    <p>{{ user.last_name }}</p>
+    <p>{{ user.dni }}</p>
+    <img src="/media/{{ user.front_pic }}" alt="Sorry we could not find your image">
+    <br> {% endfor %}
+</ul>
+{% else %}
+<p>No entered data.</p>
+{% endif %}
+
+
 {% if documents %}
 <p>Past Images you have uploaded:</p>
 <ul>
