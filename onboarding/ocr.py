@@ -224,7 +224,7 @@ def ocr(name):
     new_doc = ''.join(let for let in list(doc_type) if let.isalnum())
     doc_type = new_doc
     print("Doc type: ", doc_type)
-    country = ''.join(characters[2:4])
+    country = ''.join(characters[2:5])
     new_country = ''.join(let for let in list(country) if let.isalnum())
     country = new_country
     print("country: ", country)

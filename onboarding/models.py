@@ -14,7 +14,20 @@ class ImageSnapshot(models.Model):
     def __str__(self):
         return self.nom
 
+class ImageSnapshot(models.Model):
+    name_regex = models.RegexValidator(
+        regex=r'^[A-Za-z1-9ÑñÃãÁáÀàÂâÇçÉéÊêÍíÕõÓóÔôÚúÜü]+((\-| )[A-Za-z1-9ÑñÃãÁáÀàÂâÇçÉéÊêÍíÕõÓóÔôÚúÜü]+)*$',
+        message=_('Must be an alphanumeric'),
+    )
 
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    firstname = models.UpperCaseCharField(_('First Name'), max_length=40, validators=[name_regex])
+    lastname = models.UpperCaseCharField(_('Last Name'), max_length=40, blank=True, validators=[name_regex])
+    model_pic = models.ImageField(upload_to=os.path.join(settings.MEDIA_ROOT, 'onboarding/'),
+                                  blank=True, null=True)
+
+    def __str__(self):
+        return self.nom
 
 #class AbstractPersonInfo(ClientDataCIMDBaseModel):
     """Generic class to store personal information. To

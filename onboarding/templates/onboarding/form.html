@@ -6,7 +6,7 @@
     <title>CIMD Onboarding</title>
     {% load static %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{% static 'onboarding/onboarding.js' %}"></script>
+    <script src="{% static 'onboarding/userData.js' %}"></script>
     <link rel="stylesheet" href="{% static 'onboarding/onboarding.css' %}">
 </head>
 
@@ -36,12 +36,12 @@
 
     <img src="" id="testPhoto">
 
-<form method='post' enctype='multipart/form-data' id="userData" action="/onboarding/doc_scan/">
+<form method='post' enctype='multipart/form-data' id="userData" name="userData"><!--action="/onboarding/doc_scan/"-->
     {% csrf_token %} First name:<br>
     <input id="fnameForm" type="text" name="firstname" value="">
     <br> Last name:<br>
     <input id="lnameForm" type="text" name="lastname" value="">
-    <br> Nationality:<br>
+    <br> Nationality in capital letters (i.e: ESP):<br>
     <input id="nationalityForm" type="text" name="nationality" value="">
     <br> Date of birth:<br>
     <input id="dobForm" type="text" name="dob" value="">
@@ -52,7 +52,7 @@
     <br> DNI:<br>
     <input id="dniForm" type="text" name="dni" value="">
     <br><br>
-    <input type="submit" value="Upload" id="confDataButton">
+    <button type="button" id="confDataButton">UPLOAD</button>
 </form>
 <br>
 <a href="{% url 'home:index' %}"><button >Return to home page</button></a>

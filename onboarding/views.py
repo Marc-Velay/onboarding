@@ -38,13 +38,13 @@ def doc_scan(request):
         {"first_name": "", "last_name": "", "nationality": "", "doe": "", "dob": "", "sex": "", "dni": ""})
     if request.method == 'POST':
         if request.is_ajax():
-            #img_front_txt = request.POST.get('frontImage')
+            img_front_txt = request.POST.get('frontImage')
             img_back_txt = request.POST.get('backImage')
-            if img_back_txt is not None and request.POST.get('state') == "first":
+            if img_back_txt is not None and request.POST.get('state') == "back":
                 #Back of DNI processing and saving
                 img_back_txt = img_back_txt.replace('data:image/png;base64,', '')
                 img_back_txt = img_back_txt.rstrip(")")
-                name_back = "front_" + str(int(time.time())) + ".png"
+                name_back = "back" + str(int(time.time())) + ".png"
                 data = ContentFile(b64decode(img_back_txt), name_back)
                 model = ImageSnapshot(nom=name_back)
                 model.model_pic.save(name_back, data)
@@ -55,11 +55,15 @@ def doc_scan(request):
                 if readData == "error":
                     return JsonResponse({'error_msg': "Please rescan the document"})
                 return JsonResponse({'response': readData})
-            else:
-                return JsonResponse({'error_msg': "Please rescan the document"})
-    # ocr("fotodniRotated.jpg")   #rotated the image to display image transform
-    # readData = ocr("fotodni.jpg")         #original image
-    # /home/gniorg/Documents/CIMD/website/onboarding/media/onboarding/saved1499153129.png
-    #readData = ocr("saved1499153129.png")
+            if img_back_txt is not None and img_front_txt is not None and request.POST.get('state') == "form":
+                print("why tho")
 
     return render(request, 'onboarding/form.html', {'readData': readData})
+
+
+
+'''
+manage.py makemigrations
+manage.py migrate
+
+object, created Person.objects.get_or_create(nif=nif, defaults=datq)'''
