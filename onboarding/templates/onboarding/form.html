@@ -8,9 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'onboarding/userData.js' %}"></script>
     <link rel="stylesheet" href="{% static 'onboarding/onboarding.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
 </head>
 
-<body>
+
+<body style="margin-left: 10px">
 
     <h2 id="instructions">Please align your DNI with the black lines: </h2>
     <h2 id="errorHandling" style="display: none; color: #f00"></h2>
@@ -35,8 +53,8 @@
     </form>
 
     <img src="" id="testPhoto">
-
-<form method='post' enctype='multipart/form-data' id="userData" name="userData"><!--action="/onboarding/doc_scan/"-->
+<!--
+<form method='post' enctype='multipart/form-data' id="userData" name="userData"><!--action="/onboarding/doc_scan/">
     {% csrf_token %} First name:<br>
     <input id="fnameForm" type="text" name="firstname" value="">
     <br> Last name:<br>
@@ -54,6 +72,70 @@
     <br><br>
     <button type="button" id="confDataButton">UPLOAD</button>
 </form>
+-->
+
+<form enctype="multipart/form-data" action="" method="post" id="usercontact_form"  name="usercontact_form" novalidate="">
+<div>
+  <fieldset class="module aligned ">
+        <div class="form-row">
+                <div>
+                        <label for="id_first_name">First Name:</label>
+                        <input class="vTextField" id="id_first_name" maxlength="40" name="first_name" type="text" required="">
+                 </div>
+        </div>
+        <div class="form-row">
+                <div>
+                        <label for="id_last_name">Last Name:</label>
+                        <input class="vTextField" id="id_last_name" maxlength="40" name="last_name" type="text">
+                </div>
+        </div>
+        <div class="form-row">
+                <div>
+                        <label for="id_nationality">Nationality:</label>
+                        <input class="vTextField" id="id_nationality" maxlength="10" name="nationality" type="text" required="">
+                </div>
+        </div>
+        <div class="form-row">
+                <div>
+                    <label for="id_dob">Birthdate:</label>
+                    <input class="vDateField" id="id_dob" name="dob" size="10" type="text" placeholder="YYYY-MM-DD">
+                </div>
+        </div>
+
+        <div class="form-row">
+                <div>
+                        <label for="id_doe">Expiracydate:</label>
+                        <input class="vDateField" id="id_doe" name="doe" size="10" type="text" placeholder="YYYY-MM-DD">
+
+                </div>
+        </div>
+        <div class="form-row">
+                <div>
+                        <label for="id_sex">Sex:</label>
+                        <input class="vTextField" id="id_sex" maxlength="1" name="sex" type="text" placeholder="M/F">
+                </div>
+        </div>
+        <div class="form-row">
+                <div>
+                        <label for="id_dni">DNI:</label>
+                        <input class="vTextField" id="id_dni" maxlength="9" name="dni" type="text" required="" placeholder="012345678A">
+                </div>
+        </div>
+</fieldset>
+    <button type="button" id="confDataButton">UPLOAD</button>
+
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
 <br>
 <a href="{% url 'home:index' %}"><button >Return to home page</button></a>
 <script type="text/javascript">

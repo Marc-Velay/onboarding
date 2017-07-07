@@ -9,8 +9,9 @@ from django.shortcuts import render
 from django.core.files.base import ContentFile
 from django.conf import settings
 from django.http import JsonResponse
-import json, codecs
-from datetime import datetime, timedelta
+import json
+import base64
+from datetime import datetime
 
 import mainSite
 
@@ -49,28 +50,26 @@ def doc_scan(request):
                 img_back_txt = img_back_txt.replace('data:image/png;base64,', '')
                 img_back_txt = img_back_txt.rstrip(")")
                 name_back = "back" + str(int(time.time())) + ".png"
-                data = ContentFile(b64decode(img_back_txt), name_back)
-                model = ImageSnapshot(nom=name_back)
-                model.model_pic.save(name_back, data)
+                #data = ContentFile(b64decode(img_back_txt), name_back)
+                #model = ImageSnapshot(nom=name_back)
+                #model.model_pic.save(name_back, data)
+                with open(join(settings.MEDIA_ROOT, 'onboarding/'+name_back), "wb+") as fh:
+                    fh.write(base64.b64decode(img_back_txt))
+                    print('saved')
                 readData = ocr(name_back)
-                remove(join(settings.MEDIA_ROOT, 'onboarding/') + name_back)
-                model.save()
-                print("proc back image")
+                remove(join(settings.MEDIA_ROOT, 'onboarding/'+name_back))
                 if readData == "error":
                     return JsonResponse({'error_msg': "Please rescan the document"})
                 return JsonResponse({'response': readData})
             if img_back_txt is not None and img_front_txt is not None and request.POST.get('state') == "form":
                 data = json.loads(request.POST.get('userData'))
-                print(data['first_name'])
-                tmpDate = datetime(year=int(data['dob'][0:2]), month=int(data['dob'][2:4]), day=int(data['dob'][4:6]))
+                print(data['dob'][0:4], '  ', data['dob'][8:10], '  ', data['dob'][5:7])
+                tmpDate = datetime(year=int(data['dob'][0:4]), month=int(data['dob'][5:7]), day=int(data['dob'][8:10]))
                 data['dob'] = tmpDate
-                tmpDate = datetime(year=int(data['doe'][0:2]), month=int(data['doe'][2:4]), day=int(data['doe'][4:6]))
+                tmpDate = datetime(year=int(data['doe'][0:4]), month=int(data['doe'][5:7]), day=int(data['doe'][8:10]))
                 data['doe'] = tmpDate
 
                 user, created = UserContact.objects.get_or_create(dni=data['dni'], defaults=data)
-                print(user)
-                print()
-                print(created)
                 img_back_txt = img_back_txt.replace('data:image/png;base64,', '')
                 img_back_txt = img_back_txt.rstrip(")")
                 name_back = "back" + str(int(time.time())) + ".png"

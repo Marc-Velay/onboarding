@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'home.apps.HomeConfig',
     'onboarding.apps.OnboardingConfig',
-    'django.contrib.admin',
+    'django.contrib.admin',         #(dev, madrid2017)
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

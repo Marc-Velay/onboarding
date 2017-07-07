@@ -26,7 +26,7 @@ class UserContact(models.Model):
         message='Must be a 2-4 capital letter word',
     )
     date_regex = RegexValidator(
-        regex=r'^[0-9]{6}$',
+        regex=r'^\d{4}-\d{2}-\d{2}$',
         message='Must be a Date',
     )
     dni_regex = RegexValidator(

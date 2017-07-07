@@ -5,7 +5,8 @@ window.onload = function() {
         var state = "front";
 
         document.getElementById('subButton').style.display = "none";
-        document.getElementById('userData').style.display = "none";
+        //document.getElementById('userData').style.display = "none";
+        document.getElementById('usercontact_form').style.display = "none";
         document.getElementById('confPicture').style.display = "none";
         document.getElementById('front_layout').style.display = "block";
 
@@ -79,9 +80,9 @@ window.onload = function() {
         }
 
         function uploadDocs() {
+            formdata = new FormData();
             if (formdata) {
                 formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
-                //formdata.append("frontImage", localStorage.getItem("frontData"));   
                 formdata.append("backImage", localStorage.getItem("backData")); 
                 formdata.append("state", state);  
                 jQuery.ajax({
@@ -92,10 +93,9 @@ window.onload = function() {
                     contentType: false,
                     success: function(data, status, xhttp) {
                         state = "form";
-                        if(data/*.response*/) {
-                        //TODO remove comment around response
+                        if(data.response) {
 
-                            //var user = JSON.parse(data.response);
+                            var user = JSON.parse(data.response);
 
                             document.getElementById('subButton').style.display = "none";
                             document.getElementById('side').style.display = "none";
@@ -108,25 +108,18 @@ window.onload = function() {
                             document.getElementById('spacebarRec').style.display = "none";
                             document.getElementById('confPicture').style.display = "none";
                             document.getElementById('form').style.display = "none";
-                            document.getElementById('userData').style.display = "block";
+                            //document.getElementById('userData').style.display = "block";
+                            document.getElementById('usercontact_form').style.display = "block";
                             document.getElementById('instructions').innerHTML = "Please fill the form with your informations";
                             document.getElementById('photo').setAttribute('src', '');
 
-                            /*fnameItem = document.getElementById('fnameForm');
-                            lnameItem = document.getElementById('lnameForm');
-                            nationalityItem = document.getElementById('nationalityForm');
-                            doeItem = document.getElementById('doeForm');
-                            dobItem = document.getElementById('dobForm');
-                            sexItem = document.getElementById('sexForm');
-                            dniItem = document.getElementById('dniForm');
-
-                            fnameItem.value = user.first_name;
-                            lnameItem.value = user.last_name;
-                            nationalityItem.value = user.nationality;
-                            doeItem.value = user.doe;
-                            dobItem.value = user.dob;
-                            sexItem.value = user.sex;
-                            dniItem.value = user.dni;*/
+                            document.forms['usercontact_form']['first_name'].value = user.first_name;
+                            document.forms['usercontact_form']['last_name'].value = user.last_name;
+                            document.forms['usercontact_form']['nationality'].value = user.nationality;
+                            document.forms['usercontact_form']['doe'].value = user.doe;
+                            document.forms['usercontact_form']['dob'].value = user.dob;
+                            document.forms['usercontact_form']['sex'].value = user.sex;
+                            document.forms['usercontact_form']['dni'].value = user.dni;
 
                         } else if(data.error_msg) {
                             state = "front";
@@ -151,30 +144,29 @@ window.onload = function() {
             var letterNumber = /^[0-9a-zA-Z\s\u00C0-\u017F-]+$/;
             var numbers = /^[0-9]+$/;
             var letters = /^[a-zA-Z\s\u00C0-\u017F-]+$/;
-            var first_name = document.forms['userData']['firstname'].value;
-            var last_name = document.forms['userData']['lastname'].value;
-            var nationality = document.forms['userData']['nationality'].value;
-            var dob = document.forms['userData']['dob'].value;
-            var doe = document.forms['userData']['doe'].value;
-            var sex = document.forms['userData']['sex'].value;
-            var dni = document.forms['userData']['dni'].value;
+            var first_name = document.forms['usercontact_form']['first_name'].value;
+            var last_name = document.forms['usercontact_form']['last_name'].value;
+            var nationality = document.forms['usercontact_form']['nationality'].value;
+            var dob = document.forms['usercontact_form']['dob'].value;
+            var doe = document.forms['usercontact_form']['doe'].value;
+            var sex = document.forms['usercontact_form']['sex'].value;
+            var dni = document.forms['usercontact_form']['dni'].value;
             if(letters.test(first_name)) {
-                document.forms['userData']['firstname'].style.borderColor = "#0f0";
+                document.forms['usercontact_form']['first_name'].style.borderColor = "#0f0";
                 if(letters.test(last_name)) {
-                    document.forms['userData']['lastname'].style.borderColor = "#0f0";
+                    document.forms['usercontact_form']['last_name'].style.borderColor = "#0f0";
                     if(/^[A-Z]{2,4}$/.test(nationality)) {
-                        document.forms['userData']['nationality'].style.borderColor = "#0f0";
-                        if(/^[0-9]{6}$/.test(dob)) {
-                            document.forms['userData']['dob'].style.borderColor = "#0f0";
-                            if(/^[0-9]{6}$/.test(doe)) {
-                                document.forms['userData']['doe'].style.borderColor = "#0f0";
+                        document.forms['usercontact_form']['nationality'].style.borderColor = "#0f0";
+                        if(/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
+                            document.forms['usercontact_form']['dob'].style.borderColor = "#0f0";
+                            if(/^\d{4}-\d{2}-\d{2}$/.test(doe)) {
+                                document.forms['usercontact_form']['doe'].style.borderColor = "#0f0";
                                 if(sex == 'M' || sex == 'F') {
-                                    document.forms['userData']['sex'].style.borderColor = "#0f0";
+                                    document.forms['usercontact_form']['sex'].style.borderColor = "#0f0";
                                     if(/^[0-9]{8}[A-Z]{1}$/.test(dni)){
-                                        document.forms['userData']['dni'].style.borderColor = "#0f0";
-                                        formdata = null;
+                                        document.forms['usercontact_form']['dni'].style.borderColor = "#0f0";
                                         userDataJson = JSON.stringify({'first_name': first_name, 'last_name': last_name, 'nationality': nationality, 'dob': dob, 'doe': doe, 'sex': sex, 'dni': dni});
-                                        var formdata = new FormData();
+                                        formdata = new FormData();
                                         if (formdata) {
                                             formdata.append("csrfmiddlewaretoken", window.CSRF_TOKEN);
                                             formdata.append("frontImage", localStorage.getItem("frontData"));   
@@ -188,34 +180,34 @@ window.onload = function() {
                                                 processData: false,
                                                 contentType: false,
                                                 success: function(data, status, xhttp) {
-                                                    alert('We have saved your information!');
+                                                    window.location = "/onboarding";
                                                 },
                                                 error: function (request, status, error) {
-                                                    alert(request.responseText);
+                                                    console.log(request.responseText);
                                                 }
                                             });
                                         }
                                         return true;
                                     }
-                                    document.forms['userData']['dni'].style.borderColor = "#f00";
+                                    document.forms['usercontact_form']['dni'].style.borderColor = "#f00";
                                     return false;
                                 }
-                                document.forms['userData']['sex'].style.borderColor = "#f00";
+                                document.forms['usercontact_form']['sex'].style.borderColor = "#f00";
                                 return false;
                             }
-                            document.forms['userData']['doe'].style.borderColor = "#f00";
+                            document.forms['usercontact_form']['doe'].style.borderColor = "#f00";
                             return false;
                         }
-                        document.forms['userData']['dob'].style.borderColor = "#f00";
+                        document.forms['usercontact_form']['dob'].style.borderColor = "#f00";
                         return false;
                     }
-                    document.forms['userData']['nationality'].style.borderColor = "#f00";
+                    document.forms['usercontact_form']['nationality'].style.borderColor = "#f00";
                     return false;
                 }
-                document.forms['userData']['lastname'].style.borderColor = "#f00";
+                document.forms['usercontact_form']['last_name'].style.borderColor = "#f00";
                 return false;
             }
-            document.forms['userData']['firstname'].style.borderColor = "#f00";
+            document.forms['userData']['first_name'].style.borderColor = "#f00";
             return false;
         });
 

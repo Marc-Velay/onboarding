@@ -2,15 +2,16 @@ import os
 import mainSite
 #from .transform import four_point_transform
 #from . import imutils
-from skimage.filters import threshold_adaptive
-import numpy as np
+#from skimage.filters import threshold_adaptive
+#import numpy as np
 #import cv2
 import json, codecs
+from datetime import datetime
 from django.conf import settings
 
 import PIL
 from PIL import Image, ImageDraw, ImageEnhance
-import sys
+#import sys
 import re
 
 import pyocr
@@ -217,6 +218,12 @@ def ocr(name):
         return "error"
     print("")
 
+    doc_type = ''
+    country = ''
+    hardware_num = ''
+    conf_num1 = ''
+    dni = ''
+
     first_line = list_lines[0].split('<')[0]
     print(first_line)
     characters = list(first_line)
@@ -245,8 +252,18 @@ def ocr(name):
     print(second_line)
     characters = list(second_line[0])
     nationality = ''
+    dob = ''
+    doe = ''
+    sex = 'M'
+    conf_num3 = ''
+    conf_num4 = ''
     if len(characters) >= 18:
         dob = ''.join(re.sub(r"\D", "", ''.join(characters[0:6])))
+        if len(dob) == 6:
+            dob = datetime(year=int(dob[0:2]), month=int(dob[2:4]), day=int(dob[4:6]))
+        else:
+            dob = datetime.now()
+        dob = "{}-{}-{}".format(dob.strftime("%Y"), dob.strftime("%m"), dob.strftime("%d"))
         print("Date of birth: ", dob)
         conf_num2 = ''.join(re.sub(r"\D", "", characters[6]))
         print("Conf number 2: ", conf_num2)
@@ -255,6 +272,11 @@ def ocr(name):
             sex = 'M'
         print("sex: ", sex)
         doe = ''.join(re.sub(r"\D", "", ''.join(characters[8:14])))
+        if len(doe) == 6:
+            doe = datetime(year=int(doe[0:2]), month=int(doe[2:4]), day=int(doe[4:6]))
+        else:
+            doe = datetime.now()
+        doe = "{}-{}-{}".format(doe.strftime("%Y"), doe.strftime("%m"), doe.strftime("%d"))
         print("Date of expiration: ", doe)
         conf_num3 = ''.join(re.sub(r"\D", "", characters[14]))
         print("Conf number 3: ", conf_num3)
