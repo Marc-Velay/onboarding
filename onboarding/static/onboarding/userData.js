@@ -59,6 +59,12 @@ window.onload = function() {
             if (videoPlaying) {
                 var bump = document.getElementById('take');
                 var canvas = document.getElementById('canvas');
+                document.getElementById('canvas').style.margin = '0px';
+                document.getElementById('overlay').style.margin = '0px';
+                document.getElementById('v').style.margin = '0px';
+                document.getElementById('canvas').style.marginLeft = '10px';
+                document.getElementById('overlay').style.marginLeft = '10px';
+                document.getElementById('v').style.marginLeft = '10px';
                 bump.style.marginTop = "30px";
                 canvas.width = 800;
                 canvas.height = 600;
@@ -74,6 +80,10 @@ window.onload = function() {
             //console.log(imgData);
             if(state == "front") {
                 localStorage.setItem("frontData", imgData);
+
+                document.getElementById('canvas').style.margin = 'auto';
+                document.getElementById('overlay').style.margin = 'auto';
+                document.getElementById('v').style.margin = 'auto';
             } else {
                 localStorage.setItem("backData", imgData);
             }
@@ -132,6 +142,9 @@ window.onload = function() {
                             document.getElementById('testPhoto').setAttribute('src', '');
                             document.getElementById('photo').setAttribute('src', '');
                             document.getElementById('take').style.marginTop = "600px";
+                            document.getElementById('canvas').style.margin = 'auto';
+                            document.getElementById('overlay').style.margin = 'auto';
+                            document.getElementById('v').style.margin = 'auto';
 
                         }
                     }
