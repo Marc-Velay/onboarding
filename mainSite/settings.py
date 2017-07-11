@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'mainSite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CIMD',
-        'USER': 'dev',
-        'PASSWORD': 'cimd2017',
+        'NAME': 'cams_master',
+        'USER': 'camsuser',
+        'PASSWORD': 'camspass',
         'HOST': 'localhost',
         'PORT': '',
     }
