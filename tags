@@ -17,22 +17,27 @@
 0010_auto_20170325_1831.py	onboarding/migrations/0010_auto_20170325_1831.py	1;"	kind:file	line:1
 0011_auto_20170327_0126.py	onboarding/migrations/0011_auto_20170327_0126.py	1;"	kind:file	line:1
 0012_auto_20170411_0616.py	onboarding/migrations/0012_auto_20170411_0616.py	1;"	kind:file	line:1
-ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']$/;"	kind:variable	line:139
+0013_usercontact.py	onboarding/migrations/0013_usercontact.py	1;"	kind:file	line:1
+0014_auto_20170706_1457.py	onboarding/migrations/0014_auto_20170706_1457.py	1;"	kind:file	line:1
+0015_auto_20170706_1516.py	onboarding/migrations/0015_auto_20170706_1516.py	1;"	kind:file	line:1
+0016_auto_20170706_1527.py	onboarding/migrations/0016_auto_20170706_1527.py	1;"	kind:file	line:1
+0017_auto_20170707_1033.py	onboarding/migrations/0017_auto_20170707_1033.py	1;"	kind:file	line:1
+ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']$/;"	kind:variable	line:138
 ALLOWED_HOSTS	mainSite/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:33
-AUTH_PASSWORD_VALIDATORS	mainSite/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:100
-BASE_DIR	onboarding/models.py	/^BASE_DIR = os.path.dirname(mainSite.__file__)$/;"	kind:variable	line:7
-BASE_DIR	onboarding/views.py	/^BASE_DIR = dirname(mainSite.__file__)$/;"	kind:variable	line:23
+AUTH_PASSWORD_VALIDATORS	mainSite/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:99
+BASE_DIR	onboarding/models.py	/^BASE_DIR = os.path.dirname(mainSite.__file__)$/;"	kind:variable	line:8
+BASE_DIR	onboarding/views.py	/^BASE_DIR = dirname(mainSite.__file__)$/;"	kind:variable	line:27
 Choice	polls/models.py	/^class Choice(models.Model):$/;"	kind:class	line:17
-DATABASES	mainSite/settings.py	/^DATABASES = {$/;"	kind:variable	line:85
+DATABASES	mainSite/settings.py	/^DATABASES = {$/;"	kind:variable	line:84
 DEBUG	mainSite/settings.py	/^DEBUG = True$/;"	kind:variable	line:31
 DJANGO_ROOT	mainSite/settings.py	/^DJANGO_ROOT = dirname(dirname(abspath(__file__)))$/;"	kind:variable	line:20
 HomeConfig	home/apps.py	/^class HomeConfig(AppConfig):$/;"	kind:class	line:4
 INSTALLED_APPS	mainSite/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:38
-ImageSnapshot	onboarding/models.py	/^class ImageSnapshot(models.Model):$/;"	kind:class	line:9
+ImageSnapshot	onboarding/models.py	/^class ImageSnapshot(models.Model):$/;"	kind:class	line:10
 ImageUploadForm	onboarding/forms.py	/^class ImageUploadForm(forms.Form):$/;"	kind:class	line:3
-LANGUAGE_CODE	mainSite/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:119
-MEDIA_ROOT	mainSite/settings.py	/^MEDIA_ROOT = join(DJANGO_ROOT, 'media\/')$/;"	kind:variable	line:144
-MEDIA_URL	mainSite/settings.py	/^MEDIA_URL = '\/media\/'$/;"	kind:variable	line:148
+LANGUAGE_CODE	mainSite/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:118
+MEDIA_ROOT	mainSite/settings.py	/^MEDIA_ROOT = join(DJANGO_ROOT, 'media\/')$/;"	kind:variable	line:143
+MEDIA_URL	mainSite/settings.py	/^MEDIA_URL = '\/media\/'$/;"	kind:variable	line:147
 MIDDLEWARE	mainSite/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:50
 Migration	onboarding/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
 Migration	onboarding/migrations/0002_auto_20170317_1013.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
@@ -46,6 +51,11 @@ Migration	onboarding/migrations/0009_auto_20170325_1554.py	/^class Migration(mig
 Migration	onboarding/migrations/0010_auto_20170325_1831.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	onboarding/migrations/0011_auto_20170327_0126.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
 Migration	onboarding/migrations/0012_auto_20170411_0616.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	onboarding/migrations/0013_usercontact.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	onboarding/migrations/0014_auto_20170706_1457.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
+Migration	onboarding/migrations/0015_auto_20170706_1516.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	onboarding/migrations/0016_auto_20170706_1527.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:8
+Migration	onboarding/migrations/0017_auto_20170707_1033.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
 Migration	polls/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	kind:class	line:9
 OnboardingConfig	onboarding/apps.py	/^class OnboardingConfig(AppConfig):$/;"	kind:class	line:4
 PollsConfig	polls/apps.py	/^class PollsConfig(AppConfig):$/;"	kind:class	line:4
@@ -53,13 +63,15 @@ Question	polls/models.py	/^class Question(models.Model):$/;"	kind:class	line:9
 ROOT_URLCONF	mainSite/settings.py	/^ROOT_URLCONF = 'mainSite.urls'$/;"	kind:variable	line:60
 SECRET_KEY	mainSite/settings.py	/^SECRET_KEY = 'v520djd)h1ckxg*_48$(k!lt_pyc=_i@*7*vl58(qm1h8tp=zv'$/;"	kind:variable	line:28
 SITE_ROOT	mainSite/settings.py	/^SITE_ROOT = dirname(DJANGO_ROOT)$/;"	kind:variable	line:22
-STATICFILES_DIRS	mainSite/settings.py	/^STATICFILES_DIRS = [$/;"	kind:variable	line:134
-STATIC_URL	mainSite/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:133
+STATICFILES_DIRS	mainSite/settings.py	/^STATICFILES_DIRS = [$/;"	kind:variable	line:133
+STATIC_URL	mainSite/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:132
 TEMPLATES	mainSite/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:62
-TIME_ZONE	mainSite/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:121
-USE_I18N	mainSite/settings.py	/^USE_I18N = True$/;"	kind:variable	line:123
-USE_L10N	mainSite/settings.py	/^USE_L10N = True$/;"	kind:variable	line:125
-USE_TZ	mainSite/settings.py	/^USE_TZ = True$/;"	kind:variable	line:127
+TIME_ZONE	mainSite/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:120
+TRCancelAdmin	onboarding/admin.py	/^class TRCancelAdmin(admin.ModelAdmin):$/;"	kind:class	line:9
+USE_I18N	mainSite/settings.py	/^USE_I18N = True$/;"	kind:variable	line:122
+USE_L10N	mainSite/settings.py	/^USE_L10N = True$/;"	kind:variable	line:124
+USE_TZ	mainSite/settings.py	/^USE_TZ = True$/;"	kind:variable	line:126
+UserContact	onboarding/models.py	/^class UserContact(models.Model):$/;"	kind:class	line:19
 WSGI_APPLICATION	mainSite/settings.py	/^WSGI_APPLICATION = 'mainSite.wsgi.application'$/;"	kind:variable	line:79
 __init__.py	home/__init__.py	1;"	kind:file	line:1
 __init__.py	home/migrations/__init__.py	1;"	kind:file	line:1
@@ -68,7 +80,8 @@ __init__.py	onboarding/__init__.py	1;"	kind:file	line:1
 __init__.py	onboarding/migrations/__init__.py	1;"	kind:file	line:1
 __init__.py	polls/__init__.py	1;"	kind:file	line:1
 __init__.py	polls/migrations/__init__.py	1;"	kind:file	line:1
-__str__	onboarding/models.py	/^    def __str__(self):$/;"	kind:member	line:14
+__init__.py	tests/__init__.py	1;"	kind:file	line:1
+__str__	onboarding/models.py	/^    def __str__(self):$/;"	kind:member	line:15
 __str__	polls/models.py	/^    def __str__(self):$/;"	kind:member	line:12
 __str__	polls/models.py	/^    def __str__(self):$/;"	kind:member	line:21
 admin.py	home/admin.py	1;"	kind:file	line:1
@@ -78,7 +91,10 @@ application	mainSite/wsgi.py	/^application = get_wsgi_application()$/;"	kind:var
 apps.py	home/apps.py	1;"	kind:file	line:1
 apps.py	onboarding/apps.py	1;"	kind:file	line:1
 apps.py	polls/apps.py	1;"	kind:file	line:1
+back_pic	onboarding/models.py	/^    back_pic = models.ImageField(upload_to=os.path.join('', 'onboarding\/userpictures\/'),$/;"	kind:variable	line:52
 choice_text	polls/models.py	/^    choice_text = models.CharField(max_length=200)$/;"	kind:variable	line:19
+conftest.py	conftest.py	1;"	kind:file	line:1
+date_regex	onboarding/models.py	/^    date_regex = RegexValidator($/;"	kind:variable	line:28
 dependencies	onboarding/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:13
 dependencies	onboarding/migrations/0002_auto_20170317_1013.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	onboarding/migrations/0003_examplemodel.py	/^    dependencies = [$/;"	kind:variable	line:12
@@ -91,8 +107,19 @@ dependencies	onboarding/migrations/0009_auto_20170325_1554.py	/^    dependencies
 dependencies	onboarding/migrations/0010_auto_20170325_1831.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	onboarding/migrations/0011_auto_20170327_0126.py	/^    dependencies = [$/;"	kind:variable	line:10
 dependencies	onboarding/migrations/0012_auto_20170411_0616.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	onboarding/migrations/0013_usercontact.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	onboarding/migrations/0014_auto_20170706_1457.py	/^    dependencies = [$/;"	kind:variable	line:11
+dependencies	onboarding/migrations/0015_auto_20170706_1516.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	onboarding/migrations/0016_auto_20170706_1527.py	/^    dependencies = [$/;"	kind:variable	line:10
+dependencies	onboarding/migrations/0017_auto_20170707_1033.py	/^    dependencies = [$/;"	kind:variable	line:11
 dependencies	polls/migrations/0001_initial.py	/^    dependencies = [$/;"	kind:variable	line:13
 detail	polls/views.py	/^def detail(request, question_id):$/;"	kind:function	line:13
+dni	onboarding/models.py	/^    dni = models.CharField('DNI', max_length=9, validators=[dni_regex])$/;"	kind:variable	line:48
+dni_regex	onboarding/models.py	/^    dni_regex = RegexValidator($/;"	kind:variable	line:32
+dob	onboarding/models.py	/^    dob = models.DateField('Birthdate', null=True, blank=True, validators=[date_regex])$/;"	kind:variable	line:45
+doc_scan	onboarding/views.py	/^def doc_scan(request):$/;"	kind:function	line:40
+doe	onboarding/models.py	/^    doe = models.DateField('Expiracydate', null=True, blank=True, validators=[date_regex])$/;"	kind:variable	line:46
+enable_db_access	conftest.py	/^def enable_db_access(test_CIMD):$/;"	kind:function	line:5
 field	onboarding/migrations/0001_initial.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='onboarding.Question'),$/;"	kind:variable	line:36
 field	onboarding/migrations/0004_auto_20170317_1318.py	/^            field=models.ImageField(default='media\/no-img.jpg', upload_to='media\/'),$/;"	kind:variable	line:18
 field	onboarding/migrations/0005_auto_20170321_1130.py	/^            field=models.ImageField(upload_to='media\/'),$/;"	kind:variable	line:18
@@ -103,23 +130,39 @@ field	onboarding/migrations/0010_auto_20170325_1831.py	/^            field=model
 field	onboarding/migrations/0010_auto_20170325_1831.py	/^            field=models.ImageField(blank=True, null=True, upload_to='\/home\/gniorg\/Documents\/CIMD\/python-server\/mainSite\/media\/onboarding\/'),$/;"	kind:variable	line:23
 field	onboarding/migrations/0011_auto_20170327_0126.py	/^            field=models.ImageField(blank=True, null=True, upload_to='\/home\/gniorg\/Documents\/CIMD\/website\/onboarding\/mainSite\/media\/onboarding\/'),$/;"	kind:variable	line:18
 field	onboarding/migrations/0012_auto_20170411_0616.py	/^            field=models.ImageField(blank=True, null=True, upload_to='\/home\/gniorg\/Documents\/CIMD\/website\/onboarding\/media\/onboarding\/'),$/;"	kind:variable	line:18
+field	onboarding/migrations/0014_auto_20170706_1457.py	/^            field=models.CharField(blank=True, max_length=1, validators=[django.core.validators.RegexValidator(message='Must be 8 numbers followed by 1 capital letter', regex='^[A-Z]{1}$')], verbose_name='sex'),$/;"	kind:variable	line:39
+field	onboarding/migrations/0015_auto_20170706_1516.py	/^            field=models.ImageField(blank=True, null=True, upload_to='\/home\/gniorg\/Documents\/CIMD\/website\/onboarding\/media\/onboarding\/userpictures\/'),$/;"	kind:variable	line:18
+field	onboarding/migrations/0015_auto_20170706_1516.py	/^            field=models.ImageField(blank=True, null=True, upload_to='\/home\/gniorg\/Documents\/CIMD\/website\/onboarding\/media\/onboarding\/userpictures\/'),$/;"	kind:variable	line:23
+field	onboarding/migrations/0016_auto_20170706_1527.py	/^            field=models.ImageField(blank=True, null=True, upload_to='onboarding\/userpictures\/'),$/;"	kind:variable	line:18
+field	onboarding/migrations/0016_auto_20170706_1527.py	/^            field=models.ImageField(blank=True, null=True, upload_to='onboarding\/userpictures\/'),$/;"	kind:variable	line:23
+field	onboarding/migrations/0017_auto_20170707_1033.py	/^            field=models.DateField(blank=True, null=True, validators=[django.core.validators.RegexValidator(message='Must be a Date', regex='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')], verbose_name='Birthdate'),$/;"	kind:variable	line:19
+field	onboarding/migrations/0017_auto_20170707_1033.py	/^            field=models.DateField(blank=True, null=True, validators=[django.core.validators.RegexValidator(message='Must be a Date', regex='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')], verbose_name='Expiracydate'),$/;"	kind:variable	line:24
 field	polls/migrations/0001_initial.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.Question'),$/;"	kind:variable	line:36
 fields	onboarding/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:19
 fields	onboarding/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:27
 fields	onboarding/migrations/0003_examplemodel.py	/^            fields=[$/;"	kind:variable	line:19
 fields	onboarding/migrations/0008_auto_20170322_2243.py	/^            fields=[$/;"	kind:variable	line:17
+fields	onboarding/migrations/0013_usercontact.py	/^            fields=[$/;"	kind:variable	line:18
 fields	polls/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:19
 fields	polls/migrations/0001_initial.py	/^            fields=[$/;"	kind:variable	line:27
+first_name	onboarding/models.py	/^    first_name = models.CharField('First Name', max_length=40, validators=[name_regex])$/;"	kind:variable	line:42
 forms.py	onboarding/forms.py	1;"	kind:file	line:1
+front_pic	onboarding/models.py	/^    front_pic = models.ImageField(upload_to=os.path.join('', 'onboarding\/userpictures\/'),$/;"	kind:variable	line:50
 image	onboarding/forms.py	/^    image = forms.ImageField(label="Select")$/;"	kind:variable	line:6
 index	home/views.py	/^def index(request):$/;"	kind:function	line:5
-index	onboarding/views.py	/^def index(request):$/;"	kind:function	line:24
+index	onboarding/views.py	/^def index(request):$/;"	kind:function	line:30
 index	polls/views.py	/^def index(request):$/;"	kind:function	line:8
 initial	onboarding/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
 initial	onboarding/migrations/0003_examplemodel.py	/^    initial = True$/;"	kind:variable	line:10
 initial	polls/migrations/0001_initial.py	/^    initial = True$/;"	kind:variable	line:11
-liste	onboarding/views.py	/^def liste(request):$/;"	kind:function	line:34
+last_name	onboarding/models.py	/^    last_name = models.CharField('Last Name', max_length=40, blank=True, validators=[name_regex])$/;"	kind:variable	line:43
+list_display	onboarding/admin.py	/^                list_display = ('first_name', 'last_name', 'nationality', 'dob', 'doe', 'sex', 'dni')$/;"	kind:variable	line:10
 manage.py	manage.py	1;"	kind:file	line:1
+message	onboarding/models.py	/^        message='Must be 8 numbers followed by 1 capital letter',$/;"	kind:variable	line:34
+message	onboarding/models.py	/^        message='Must be 8 numbers followed by 1 capital letter',$/;"	kind:variable	line:38
+message	onboarding/models.py	/^        message='Must be a 2-4 capital letter word',$/;"	kind:variable	line:26
+message	onboarding/models.py	/^        message='Must be a Date',$/;"	kind:variable	line:30
+message	onboarding/models.py	/^        message='Must be an alphanumeric',$/;"	kind:variable	line:22
 model_name	onboarding/migrations/0001_initial.py	/^            model_name='choice',$/;"	kind:variable	line:34
 model_name	onboarding/migrations/0002_auto_20170317_1013.py	/^            model_name='choice',$/;"	kind:variable	line:16
 model_name	onboarding/migrations/0004_auto_20170317_1318.py	/^            model_name='examplemodel',$/;"	kind:variable	line:16
@@ -131,8 +174,19 @@ model_name	onboarding/migrations/0010_auto_20170325_1831.py	/^            model_
 model_name	onboarding/migrations/0010_auto_20170325_1831.py	/^            model_name='imagesnapshot',$/;"	kind:variable	line:21
 model_name	onboarding/migrations/0011_auto_20170327_0126.py	/^            model_name='imagesnapshot',$/;"	kind:variable	line:16
 model_name	onboarding/migrations/0012_auto_20170411_0616.py	/^            model_name='imagesnapshot',$/;"	kind:variable	line:16
+model_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            model_name='usercontact',$/;"	kind:variable	line:17
+model_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            model_name='usercontact',$/;"	kind:variable	line:22
+model_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            model_name='usercontact',$/;"	kind:variable	line:27
+model_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            model_name='usercontact',$/;"	kind:variable	line:32
+model_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            model_name='usercontact',$/;"	kind:variable	line:37
+model_name	onboarding/migrations/0015_auto_20170706_1516.py	/^            model_name='usercontact',$/;"	kind:variable	line:16
+model_name	onboarding/migrations/0015_auto_20170706_1516.py	/^            model_name='usercontact',$/;"	kind:variable	line:21
+model_name	onboarding/migrations/0016_auto_20170706_1527.py	/^            model_name='usercontact',$/;"	kind:variable	line:16
+model_name	onboarding/migrations/0016_auto_20170706_1527.py	/^            model_name='usercontact',$/;"	kind:variable	line:21
+model_name	onboarding/migrations/0017_auto_20170707_1033.py	/^            model_name='usercontact',$/;"	kind:variable	line:17
+model_name	onboarding/migrations/0017_auto_20170707_1033.py	/^            model_name='usercontact',$/;"	kind:variable	line:22
 model_name	polls/migrations/0001_initial.py	/^            model_name='choice',$/;"	kind:variable	line:34
-model_pic	onboarding/models.py	/^    model_pic = models.ImageField(upload_to=os.path.join(settings.MEDIA_ROOT, 'onboarding\/'),$/;"	kind:variable	line:12
+model_pic	onboarding/models.py	/^    model_pic = models.ImageField(upload_to=os.path.join(settings.MEDIA_ROOT, 'onboarding\/'),$/;"	kind:variable	line:13
 models.py	home/models.py	1;"	kind:file	line:1
 models.py	onboarding/models.py	1;"	kind:file	line:1
 models.py	polls/models.py	1;"	kind:file	line:1
@@ -156,13 +210,33 @@ name	onboarding/migrations/0010_auto_20170325_1831.py	/^            name='model_
 name	onboarding/migrations/0010_auto_20170325_1831.py	/^            name='nom',$/;"	kind:variable	line:17
 name	onboarding/migrations/0011_auto_20170327_0126.py	/^            name='model_pic',$/;"	kind:variable	line:17
 name	onboarding/migrations/0012_auto_20170411_0616.py	/^            name='model_pic',$/;"	kind:variable	line:17
+name	onboarding/migrations/0013_usercontact.py	/^            name='UserContact',$/;"	kind:variable	line:17
+name	onboarding/migrations/0014_auto_20170706_1457.py	/^            name='sex',$/;"	kind:variable	line:38
+name	onboarding/migrations/0015_auto_20170706_1516.py	/^            name='back_pic',$/;"	kind:variable	line:17
+name	onboarding/migrations/0015_auto_20170706_1516.py	/^            name='front_pic',$/;"	kind:variable	line:22
+name	onboarding/migrations/0016_auto_20170706_1527.py	/^            name='back_pic',$/;"	kind:variable	line:17
+name	onboarding/migrations/0016_auto_20170706_1527.py	/^            name='front_pic',$/;"	kind:variable	line:22
+name	onboarding/migrations/0017_auto_20170707_1033.py	/^            name='dob',$/;"	kind:variable	line:18
+name	onboarding/migrations/0017_auto_20170707_1033.py	/^            name='doe',$/;"	kind:variable	line:23
 name	polls/apps.py	/^    name = 'polls'$/;"	kind:variable	line:5
 name	polls/migrations/0001_initial.py	/^            name='Choice',$/;"	kind:variable	line:18
 name	polls/migrations/0001_initial.py	/^            name='Question',$/;"	kind:variable	line:26
 name	polls/migrations/0001_initial.py	/^            name='question',$/;"	kind:variable	line:35
-nom	onboarding/models.py	/^    nom = models.CharField(max_length=30, default='')$/;"	kind:variable	line:11
-ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:18
+name_regex	onboarding/models.py	/^    name_regex = RegexValidator($/;"	kind:variable	line:20
+nationality	onboarding/models.py	/^    nationality = models.CharField('Nationality', max_length=10, validators=[nationality_regex])$/;"	kind:variable	line:44
+nationality_regex	onboarding/models.py	/^    nationality_regex = RegexValidator($/;"	kind:variable	line:24
+new_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            new_name='dob',$/;"	kind:variable	line:19
+new_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            new_name='doe',$/;"	kind:variable	line:24
+new_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            new_name='first_name',$/;"	kind:variable	line:29
+new_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            new_name='last_name',$/;"	kind:variable	line:34
+nom	onboarding/models.py	/^    nom = models.CharField(max_length=30, default='')$/;"	kind:variable	line:12
+ocr	onboarding/ocr.py	/^def ocr(name):$/;"	kind:function	line:20
 ocr.py	onboarding/ocr.py	1;"	kind:file	line:1
+old_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            old_name='birthdate',$/;"	kind:variable	line:18
+old_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            old_name='expiracydate',$/;"	kind:variable	line:23
+old_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            old_name='firstname',$/;"	kind:variable	line:28
+old_name	onboarding/migrations/0014_auto_20170706_1457.py	/^            old_name='lastname',$/;"	kind:variable	line:33
+onboardingTest	tests/test_views.py	/^class onboardingTest(TestCase):$/;"	kind:class	line:4
 operations	onboarding/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
 operations	onboarding/migrations/0002_auto_20170317_1013.py	/^    operations = [$/;"	kind:variable	line:14
 operations	onboarding/migrations/0003_examplemodel.py	/^    operations = [$/;"	kind:variable	line:16
@@ -175,16 +249,32 @@ operations	onboarding/migrations/0009_auto_20170325_1554.py	/^    operations = [
 operations	onboarding/migrations/0010_auto_20170325_1831.py	/^    operations = [$/;"	kind:variable	line:14
 operations	onboarding/migrations/0011_auto_20170327_0126.py	/^    operations = [$/;"	kind:variable	line:14
 operations	onboarding/migrations/0012_auto_20170411_0616.py	/^    operations = [$/;"	kind:variable	line:14
+operations	onboarding/migrations/0013_usercontact.py	/^    operations = [$/;"	kind:variable	line:15
+operations	onboarding/migrations/0014_auto_20170706_1457.py	/^    operations = [$/;"	kind:variable	line:15
+operations	onboarding/migrations/0015_auto_20170706_1516.py	/^    operations = [$/;"	kind:variable	line:14
+operations	onboarding/migrations/0016_auto_20170706_1527.py	/^    operations = [$/;"	kind:variable	line:14
+operations	onboarding/migrations/0017_auto_20170707_1033.py	/^    operations = [$/;"	kind:variable	line:15
 operations	polls/migrations/0001_initial.py	/^    operations = [$/;"	kind:variable	line:16
 pub_date	polls/models.py	/^    pub_date = models.DateTimeField('date published')$/;"	kind:variable	line:11
 question	polls/models.py	/^    question = models.ForeignKey(Question, on_delete=models.CASCADE)$/;"	kind:variable	line:18
 question_text	polls/models.py	/^    question_text = models.CharField(max_length=200)$/;"	kind:variable	line:10
+regex	onboarding/models.py	/^        regex=r'^[0-9]{8}[A-Z]{1}$',$/;"	kind:variable	line:33
+regex	onboarding/models.py	/^        regex=r'^[A-Z]{1}$',$/;"	kind:variable	line:37
+regex	onboarding/models.py	/^        regex=r'^[A-Za-z1-9ÑñÃãÁáÀàÂâÇçÉéÊêÍíÕõÓóÔôÚúÜü]+((\\-| )[A-Za-z1-9ÑñÃãÁáÀàÂâÇçÉéÊêÍíÕõÓóÔôÚúÜü]+)*$',$/;"	kind:variable	line:21
+regex	onboarding/models.py	/^        regex=r'^[A-Za-z]*$',$/;"	kind:variable	line:25
+regex	onboarding/models.py	/^        regex=r'^\\d{4}-\\d{2}-\\d{2}$',$/;"	kind:variable	line:29
 results	polls/views.py	/^def results(request, question_id):$/;"	kind:function	line:16
 settings.py	mainSite/settings.py	1;"	kind:file	line:1
+sex	onboarding/models.py	/^    sex = models.CharField('sex', max_length=1, blank=True, validators=[sex_regex])$/;"	kind:variable	line:47
+sex_regex	onboarding/models.py	/^    sex_regex = RegexValidator($/;"	kind:variable	line:36
+testHome	tests/test_views.py	/^    def testHome(self):$/;"	kind:member	line:5
+test_models.py	tests/test_models.py	1;"	kind:file	line:1
+test_views.py	tests/test_views.py	1;"	kind:file	line:1
 tests.py	home/tests.py	1;"	kind:file	line:1
 tests.py	onboarding/tests.py	1;"	kind:file	line:1
 tests.py	polls/tests.py	1;"	kind:file	line:1
-uploaded_at	onboarding/models.py	/^    uploaded_at = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:10
+uploaded_at	onboarding/models.py	/^    uploaded_at = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:11
+uploaded_at	onboarding/models.py	/^    uploaded_at = models.DateTimeField(auto_now_add=True)$/;"	kind:variable	line:41
 urlpatterns	home/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5
 urlpatterns	mainSite/urls.py	/^urlpatterns = [$/;"	kind:variable	line:21
 urlpatterns	onboarding/urls.py	/^urlpatterns = [$/;"	kind:variable	line:5

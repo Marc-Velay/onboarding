@@ -78,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mainSite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -90,6 +89,10 @@ DATABASES = {
         'PASSWORD': 'cimd2017',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST': {
+            'USER': 'dev',
+            'PASSWORD': 'cimd2017',
+        },
     }
 }
 
