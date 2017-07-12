@@ -4,14 +4,10 @@ pipeline {
     stages {
 
         stage('Build') {
-            node {
-                stage('building') {
-                    steps {
-                        sh '''
-                            ls
-                            docker-compose up --build'''
-                    }
-                }
+            steps {
+                sh '''
+                    ls
+                    docker-compose up --build'''
             }
         }
         stage('Test') {
