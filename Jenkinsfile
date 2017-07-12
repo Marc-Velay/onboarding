@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh '''
                     rm -rf env
-                    virtualenv env
+                    virtualenv -p python3 env
                     source env/bin/activate
                     pip install docker-compose
                     ls
