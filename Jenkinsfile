@@ -5,10 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    pip install virtualenv
+                    rm -rf env
                     virtualenv env
                     source env/bin/activate
-                    pip3 install docker-compose==1.10.1
+                    pip install docker-compose
                     ls
                     docker-compose up --build'''
             }
