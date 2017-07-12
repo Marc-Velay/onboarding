@@ -1,18 +1,24 @@
 web:
   build: .
-  command: bash -c "sh ./wait-for-it.sh db:3306 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
   volumes:
     - .:/code
   ports:
     - "8000:8001"
   links:
-    - db
+    - db:
+                condition: service_healthy
 db:
+  container_name: db
   image: mysql
   environment:
     - MYSQL_ROOT_PASSWORD=camspass
     - MYSQL_USER=camsuser
     - MYSQL_PASSWORD=camspass
     - MYSQL_DATABASE=CIMD
+  healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
 
  # command: ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]
