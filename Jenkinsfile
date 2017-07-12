@@ -5,6 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
+                    virtualenv env
+                    source env/bin/activate
+                    pip install docker-compose
                     ls
                     docker-compose up --build'''
             }
@@ -12,6 +15,7 @@ pipeline {
         stage('Test') {
             steps{
                 sh '''
+                    source bin/activate
                     docker-compose run web python3 manage.py test'''
             }
         }
