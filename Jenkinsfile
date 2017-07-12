@@ -5,10 +5,12 @@ pipeline {
 
         stage('Build') {
             node {
-                steps {
-                    sh '''
-                        ls
-                        docker-compose up --build'''
+                stage('building') {
+                    steps {
+                        sh '''
+                            ls
+                            docker-compose up --build'''
+                    }
                 }
             }
         }
