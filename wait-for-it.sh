@@ -7,9 +7,11 @@ host="$1"
 shift
 cmd="$@"
 echo '$host'
-until mysql -h "$host" -U "mysql" -c '\l'; do
-  >&2 echo "MySQL is unavailable - sleeping"
-  sleep 1
+until nc -z -v -w30 $CFG_MYSQL_HOST 3306
+do
+  echo "Waiting for database connection..."
+  # wait for 5 seconds before check again
+  sleep 5
 done
 
 >&2 echo "MySQL is up - executing command"
