@@ -9,7 +9,7 @@ pipeline {
                     virtualenv env
                     source env/bin/activate
                     python -V
-                    pip install docker-compose
+                    pip3 install docker-compose
                     ls
                     docker-compose up --build'''
             }
