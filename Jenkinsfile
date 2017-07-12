@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
+                    echo ${USER}
                     pip install docker-compose
                     docker-compose up --build'''
             }
