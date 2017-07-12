@@ -1,15 +1,4 @@
 services:
-    api:
-        build: .
-        container_name: api
-        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-        ports:
-            - "8000:8000"
-        depends_on:
-            db:
-                condition: service_healthy
-        volumes:
-        - .:/code
     db:
         container_name: db
         image: mysql
@@ -25,3 +14,15 @@ services:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
+
+    api:
+        build: .
+        container_name: api
+        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        ports:
+            - "8000:8000"
+        depends_on:
+            db:
+                condition: service_healthy
+        volumes:
+        - .:/code
