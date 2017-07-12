@@ -8,7 +8,7 @@ pipeline {
                     pip install virtualenv
                     virtualenv env
                     source env/bin/activate
-                    pip3 install docker-compose
+                    pip3 install docker-compose==1.10.1
                     ls
                     docker-compose up --build'''
             }
