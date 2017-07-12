@@ -1,6 +1,8 @@
-pipeline {
-    agent any
-    node {
+node {
+
+    pipeline {
+        agent any
+
         stages {
             stage('Build') {
                 steps {
@@ -16,11 +18,10 @@ pipeline {
                 }
             }
         }
-
-    }
-    post {
-        always {
-            sh ''' echo "done" '''
+        post {
+            always {
+                sh ''' echo "done" '''
+            }
         }
     }
 }
