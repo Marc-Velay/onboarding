@@ -11,16 +11,17 @@ services:
             db:
                 condition: service_healthy
     db:
-      container_name: db
-      image: mysql
-      ports:
-        - "3306"
-      environment:
-        - MYSQL_ROOT_PASSWORD=camspass
-        - MYSQL_USER=camsuser
-        - MYSQL_PASSWORD=camspass
-        - MYSQL_DATABASE=CIMD
-      healthcheck:
+        container_name: db
+        image: mysql
+        ports:
+            - "3306"
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_ROOT_PASSWORD=camspass
+            MYSQL_USER=camsuser
+            MYSQL_PASSWORD=camspass
+            MYSQL_DATABASE=CIMD
+        healthcheck:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
