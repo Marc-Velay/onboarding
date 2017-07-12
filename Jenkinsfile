@@ -8,7 +8,7 @@ pipeline {
                     rm -rf env
                     virtualenv --python=python3.4 env
                     source env/bin/activate
-                    pip install docker-compose
+                    pip3 install docker-compose
                     ls
                     docker-compose up --build'''
             }
