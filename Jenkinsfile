@@ -1,6 +1,8 @@
 node {
      stage('Build') {
                 sh '''
+                    rm -rf ./*
+                    git pull remote https://github.com/Marc-Velay/onboarding
                     ls
                     docker-compose up --build'''
 
