@@ -2,11 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                sh '''
-                    ls
-                    docker-compose up --build'''
+        node {
+            stage('Build') {
+                steps {
+                    sh '''
+                        ls
+                        docker-compose up --build'''
+                }
             }
         }
         stage('Test') {
