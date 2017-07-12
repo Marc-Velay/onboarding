@@ -6,9 +6,10 @@ pipeline {
             steps {
                 sh '''
                     rm -rf env
-                    virtualenv --python=python3.4 env
+                    virtualenv env
                     source env/bin/activate
-                    pip3 install docker-compose
+                    python -V
+                    pip install docker-compose
                     ls
                     docker-compose up --build'''
             }
