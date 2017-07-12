@@ -6,8 +6,8 @@ set -e
 host="$1"
 shift
 cmd="$@"
-echo '$host'
-until -xaqW%h:30 $CFG_MYSQL_HOST 3306
+
+until mysqladmin ping -h localhost
 do
   echo "Waiting for database connection..."
   # wait for 5 seconds before check again

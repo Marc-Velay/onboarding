@@ -1,29 +1,19 @@
-
-api:
-    build: .
-    container_name: api
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    volumes_from:
-      - code
-    ports:
-        - "8080:8080"
-    depends_on:
-        db:
-            condition: service_healthy
+web:
+  build: .
+  command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+    - db:
 db:
-    container_name: db
-    image: mysql
-    ports:
-        - "3306"
-    environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-        MYSQL_ROOT_PASSWORD: "camspass"
-        MYSQL_USER: "camsuser"
-        MYSQL_PASSWORD: "camspass"
-        MYSQL_DATABASE: "CIMD"
-    healthcheck:
-        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-        timeout: 20s
-        retries: 10
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=camspass
+    - MYSQL_USER=camsuser
+    - MYSQL_PASSWORD=camspass
+    - MYSQL_DATABASE=CIMD
+
 
  # command: ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]
