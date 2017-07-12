@@ -30,7 +30,7 @@ SECRET_KEY = 'v520djd)h1ckxg*_48$(k!lt_pyc=_i@*7*vl58(qm1h8tp=zv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.58.129', '0.0.0.0', 'localhost', '*']
 
 
 # Application definition
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'mainSite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cams_master',
+        'NAME': 'CIMD',
         'USER': 'camsuser',
         'PASSWORD': 'camspass',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '',
         'TEST': {
             'USER': 'dev',
@@ -138,8 +138,6 @@ STATICFILES_DIRS = [
     join(SITE_ROOT, "static/"),
     '/static/',
     ]
-
-ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']
 
 #MEDIA_ROOT = join(BASE_DIR, 'media')
 # ======== MEDIA CONFIGURATION

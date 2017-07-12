@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8001"
+  links:
+    - db
+db:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=camspass
+    - MYSQL_USER=camsuser
+    - MYSQL_PASSWORD=camspass
+    - MYSQL_DATABASE=CIMD
