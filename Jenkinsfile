@@ -1,9 +1,5 @@
- pipeline {
-     agent any
-
-
-     stages {
-        stage('Build') {
+node {
+     stage('Build') {
                 sh '''
                     ls
                     docker-compose up --build'''
@@ -14,11 +10,10 @@
                     docker-compose run web python3 manage.py test'''
 
         }
-    }
+
     post {
         always {
             sh ''' echo "done" '''
         }
     }
-}
 }
