@@ -7,13 +7,14 @@ pipeline {
                 sh '''rm -rf env
                     virtualenv env
                     source env/bin/activate
-                    pip install -r requirements.txt'''
+                    pip3 install -r requirements.txt
+                    python3 manage.py migrate'''
             }
         }
         stage('Test') {
             steps {
                 sh '''source env/bin/activate
-                python manage.py test'''
+                python3 manage.py test'''
             }
         }
     }
