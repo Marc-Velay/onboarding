@@ -6,7 +6,7 @@ set -e
 host="$1"
 shift
 cmd="$@"
-
+echo '$host'
 until mysql -h "$host" -U "mysql" -c '\l'; do
   >&2 echo "MySQL is unavailable - sleeping"
   sleep 1
