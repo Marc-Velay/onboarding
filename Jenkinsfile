@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     stages {
-        node {
-            stage('Build') {
+
+        stage('Build') {
+            node {
                 steps {
                     sh '''
                         ls
