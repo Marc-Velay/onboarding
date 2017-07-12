@@ -7,7 +7,7 @@ host="$1"
 shift
 cmd="$@"
 echo '$host'
-until nc -z -v -w30 $CFG_MYSQL_HOST 3306
+until -xaqW%h:30 $CFG_MYSQL_HOST 3306
 do
   echo "Waiting for database connection..."
   # wait for 5 seconds before check again
