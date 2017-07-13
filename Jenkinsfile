@@ -11,14 +11,12 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose up --build
-                    docker-compose down'''
+                    docker-compose up --build'''
             }
         }
         stage('Test') {
             steps{
                 sh '''
-                    deactivate
                     source bin/activate
                     docker-compose run web python3 manage.py test'''
             }
