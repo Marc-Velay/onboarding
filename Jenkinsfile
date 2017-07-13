@@ -22,8 +22,6 @@ pipeline {
                     rm -rf env
                     virtualenv env
                     source env/bin/activate
-                    python -V
-                    pip3 install docker-compose
                     ls
                     docker-compose -f docker-compose.yml up'''
             }
