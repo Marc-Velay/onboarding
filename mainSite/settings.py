@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'CIMD',
         'USER': 'camsuser',
         'PASSWORD': 'camspass',
-        'HOST': 'db_1',
+        'HOST': 'onboarding_db_1',
         'PORT': '3306',
     }
 }
