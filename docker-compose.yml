@@ -11,7 +11,7 @@ services:
             MYSQL_PASSWORD: "camspass"
             MYSQL_DATABASE: "CIMD"
         healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            test: ["CMD", "ping", "db"]
             timeout: 20s
             retries: 10
 
