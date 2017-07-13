@@ -11,8 +11,8 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose -f docker-compose.test.yml build --force-rm --co-cache db
-                    docker-compose -f docker-compose.test.yml build --force-rm --co-cache api
+                    docker-compose -f docker-compose.test.yml build --force-rm --no-cache db
+                    docker-compose -f docker-compose.test.yml build --force-rm --no-cache api
                     echo "WTFFFFF"
                     docker-compose -f docker-compose.test.yml up --no-build
                     echo `docker logs -f api_1`'''
