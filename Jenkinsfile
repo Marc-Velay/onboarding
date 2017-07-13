@@ -2,7 +2,7 @@ pipeline {
      agent any
 
      stages {
-        stage('Build') {
+        stage('Test') {
             steps {
                 sh '''
                     rm -rf env
@@ -11,14 +11,20 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose build'''
+                    docker-compose -f docker-compose.test.yml -p onb up --build
+                    echo `docker logs -f onb_sut_1`'''
             }
         }
-        stage('Test') {
+        stage('Deploy') {
             steps{
                 sh '''
+                    rm -rf env
+                    virtualenv env
                     source env/bin/activate
-                    docker-compose run api python3 manage.py test'''
+                    python -V
+                    pip3 install docker-compose
+                    ls
+                    docker-compose -f docker-compose.yml up --build'''
             }
         }
     }

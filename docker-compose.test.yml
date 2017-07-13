@@ -1,5 +1,11 @@
 version: '2.1'
 services:
+    sut:
+        build: .
+        dockerfile: Dockerfile.test
+        links:
+            - api
+
     db:
         container_name: db
         image: mysql
@@ -19,9 +25,7 @@ services:
         build: .
         dockerfile: Dockerfile
         container_name: api
-        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-        ports:
-            - "8000:8000"
+        #command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
         depends_on:
             db:
                 condition: service_healthy
