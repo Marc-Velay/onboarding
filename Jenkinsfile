@@ -11,7 +11,7 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose -f docker-compose.test.yml up -d db
+                    docker-compose -f docker-compose.test.yml up --force-rm -d db
                     docker-compose -f docker-compose.test.yml build --force-rm api
                     echo "WTFFFFF"
                     docker-compose -f docker-compose.test.yml up --no-build
