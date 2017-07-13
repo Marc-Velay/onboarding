@@ -15,7 +15,7 @@ pipeline {
                     docker-compose -f docker-compose.test.yml build --force-rm api
                     echo "WTFFFFF"
                     docker-compose -f docker-compose.test.yml up --no-build  --no-recreate
-                    echo `docker logs -f api_1`'''
+                    echo `docker logs -f onboarding_api1`'''
             }
         }
         stage('Deploy') {
