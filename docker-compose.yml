@@ -6,7 +6,6 @@ services:
         ports:
             - "3306"
         environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
             MYSQL_ROOT_PASSWORD: "camspass"
             MYSQL_USER: "camsuser"
             MYSQL_PASSWORD: "camspass"
