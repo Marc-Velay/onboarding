@@ -2,7 +2,9 @@ version: '2.1'
 services:
     sut:
         build: .
-        dockerfile: ./Dockerfile.test
+        build:
+            context: .
+            dockerfile: Dockerfile.test
         links:
             - api
 
@@ -23,7 +25,9 @@ services:
 
     api:
         build: .
-        dockerfile: ./Dockerfile
+        build:
+            context: .
+            dockerfile: Dockerfile
         container_name: api
         #command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
         depends_on:
