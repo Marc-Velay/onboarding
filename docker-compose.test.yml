@@ -1,6 +1,5 @@
 version: '2.1'
 services:
-
     db:
         container_name: db
         image: mysql
@@ -18,17 +17,12 @@ services:
 
     api:
         build: .
+        build:
+            context: .
+            dockerfile: Dockerfile-test
         container_name: api
         depends_on:
             db:
                 condition: service_healthy
         volumes:
         - .:/code
-
-    sut:
-        build: .
-        build:
-            context: .
-            dockerfile: Dockerfile.test
-        links:
-            - api

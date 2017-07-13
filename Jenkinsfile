@@ -12,12 +12,13 @@ pipeline {
                     pip3 install docker-compose
                     ls
                     docker-compose -f docker-compose.test.yml -p onb up --build
-                    echo `docker logs -f onb_sut_1`'''
+                    echo `docker logs -f onb_api_1`'''
             }
         }
         stage('Deploy') {
             steps{
                 sh '''
+                    echo "DEPLOYING"
                     rm -rf env
                     virtualenv env
                     source env/bin/activate
