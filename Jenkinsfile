@@ -11,8 +11,7 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose up --build
-                    docker-compose down'''
+                    docker-compose build'''
             }
         }
         stage('Test') {
