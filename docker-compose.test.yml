@@ -1,20 +1,5 @@
 version: '2.1'
 services:
-    sut:
-        build: .
-        build:
-            context: .
-            dockerfile: Dockerfile.test
-        links:
-            - api
-
-    api:
-        container_name: api
-        depends_on:
-            db:
-                condition: service_healthy
-        volumes:
-        - .:/code
 
     db:
         container_name: db
@@ -30,3 +15,20 @@ services:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
+
+    api:
+        build: .
+        container_name: api
+        depends_on:
+            db:
+                condition: service_healthy
+        volumes:
+        - .:/code
+
+    sut:
+        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile.test
+        links:
+            - api

@@ -24,7 +24,7 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose -f docker-compose.yml up --build'''
+                    docker-compose -f docker-compose.yml up'''
             }
         }
     }
