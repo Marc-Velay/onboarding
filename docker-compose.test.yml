@@ -4,7 +4,7 @@ services:
     api:
         build: .
         build:
-            image: centos:7
+            context: .
             dockerfile: Dockerfile-test
         container_name: api
         command: "echo 'WTF2'"
