@@ -18,7 +18,7 @@ pipeline {
             steps{
                 sh '''
                     source env/bin/activate
-                    docker-compose run web python3 manage.py test'''
+                    docker-compose run api python3 manage.py test'''
             }
         }
     }
