@@ -17,8 +17,7 @@ pipeline {
         stage('Test') {
             steps{
                 sh '''
-                    deactivate
-                    source bin/activate
+                    source env/bin/activate
                     docker-compose run web python3 manage.py test'''
             }
         }
