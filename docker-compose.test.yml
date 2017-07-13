@@ -17,6 +17,7 @@ services:
     db:
         container_name: db
         image: mysql
+        hostname: db
         ports:
             - "3306"
         command: "echo 'WTF'"

@@ -5,6 +5,7 @@ services:
         image: mysql
         ports:
             - "3306"
+        hostname: db
         environment:
             MYSQL_ROOT_PASSWORD: "camspass"
             MYSQL_USER: "camsuser"
