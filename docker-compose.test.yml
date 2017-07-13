@@ -8,6 +8,15 @@ services:
         links:
             - api
 
+    api:
+        build: .
+        container_name: api
+        depends_on:
+            db:
+                condition: service_healthy
+        volumes:
+        - .:/code
+
     db:
         container_name: db
         image: mysql
@@ -22,16 +31,3 @@ services:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
-
-    api:
-        build: .
-        build:
-            context: .
-            dockerfile: Dockerfile
-        container_name: api
-        #command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-        depends_on:
-            db:
-                condition: service_healthy
-        volumes:
-        - .:/code
