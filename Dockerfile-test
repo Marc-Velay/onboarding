@@ -5,6 +5,7 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN pip3 install -r requirements.txt
 ADD . /code/
+RUN /bin/bash -l -c "rake db:migrate"
 CMD ["python", "manage.py", "makemigrations"]
 CMD ["python", "manage.py", "migrate"]
 CMD ["bash", "python", "manage.py", "test"]
