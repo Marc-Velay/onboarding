@@ -11,8 +11,9 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose -f docker-compose.test.yml -p onb up --build
-                    echo `docker logs -f onb_api_1`'''
+                    docker-compose -f docker-compose.test.yml build
+                    docker-compose -f docker-compose.test.yml up
+                    echo `docker logs -f api_1`'''
             }
         }
         stage('Deploy') {
