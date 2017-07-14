@@ -2,7 +2,7 @@ pipeline {
      agent any
 
      stages {
-        stage('Test') {
+        stage('Build') {
             steps {
                 sh '''
                     rm -rf env
@@ -11,22 +11,7 @@ pipeline {
                     python -V
                     pip3 install docker-compose
                     ls
-                    docker-compose -f docker-compose.test.yml up --build --no-recreate db
-                    docker-compose -f docker-compose.test.yml build --force-rm api
-                    echo "WTFFFFF"
-                    docker-compose -f docker-compose.test.yml up --no-build  --no-recreate
-                    echo `docker logs -f onboarding_api1`'''
-            }
-        }
-        stage('Deploy') {
-            steps{
-                sh '''
-                    echo "DEPLOYING"
-                    rm -rf env
-                    virtualenv env
-                    source env/bin/activate
-                    ls
-                    docker-compose -f docker-compose.yml up  --no-recreate'''
+                    docker build -t localhost:9999/django-app .'''
             }
         }
     }
