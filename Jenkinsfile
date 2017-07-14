@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    apt-get install python3-pip
+                    sudo apt-get install python3-pip
                     pip install virtualenv
                     rm -rf env
                     virtualenv --python=python3.5 env
