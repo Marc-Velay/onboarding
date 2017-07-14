@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
+                    pip3 install virtualenv
                     rm -rf env
                     virtualenv env
                     source env/bin/activate
